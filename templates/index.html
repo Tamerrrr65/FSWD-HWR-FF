@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Webseite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        Navigations-Leiste
+    </div>
+    <div class="info-text">
+        Hier sollte ein Info-Text sein, der erklärt, für was die Seite ist.
+    </div>
+    <div class="second-info-text">
+        Zweite Info-Text
+    </div>
+    <button class="redirect-button" onclick="window.location.href='https://example.com'">
+        Button, der ein weiterleitet
+    </button>
+</body>
+</html>
