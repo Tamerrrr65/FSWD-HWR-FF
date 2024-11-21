@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Hauptstyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Test.css') }}">
 </head>
 <body>
-<h1>Informationen für junge Startups</h1>
-    <div class="navbar">
-        Navigations-Leiste
-    </div>
-    <div class="info-text">
-        Hier sollte ein Info-Text sein, der erklärt, für was die Seite ist.
-    </div>
-    <div class="second-info-text">
-        Zweite Info-Text
-    </div>
-    <!--Weiterleitung auf Seite 2--> 
+    <div class="container">
+        <header>Header</header>
+        <div class="banner">Banner</div>
+        <div class="left-aside">Linke Sidebar</div>
+        <main>Main-Inhalt   
     <button class="redirect-button" onclick="window.location.href='/Zweitseite'">Button, der ein weiterleitet</button>
     <button class="redirect-button" onclick="window.location.href='/Test'">Button auf die Testseite</button>
-    <button class="redirect-button" onclick="window.location.href='/Registrieren'">Button, zu der Registrieren-Seite</button>
-    <button class="redirect-button" onclick="window.location.href='/Anmelden'">Button, zu der Anmelden-Seite</button>
+    <button class="redirect-button" onclick="window.location.href='/Registrieren'">Zu der Registrieren-Seite </button>
+    <button class="redirect-button" onclick="window.location.href='/Gesetze'">Zu den Gesetzen</button>
+    <button class="redirect-button" onclick="window.location.href='/Anmelden'">Zu der Anmelden-Seite </button>
+        </main>
+        <div class="low-content">Niedriger Inhalt</div>
+        <div class="right-aside">Rechte Sidebar</div>
+        <footer>Footer</footer>
+    </div>
 </body>
 </html>

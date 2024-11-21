@@ -22,5 +22,9 @@ def fourth_page():
 def fifth_page():
     return render_template('Registrieren.html')
 
+@app.route('/Gesetze')
+def sixth_page():
+    return render_template('Gesetze.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
