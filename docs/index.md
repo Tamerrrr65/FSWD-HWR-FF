@@ -8,13 +8,14 @@ nav_order: 0
 >
 > You may delete this `attention` box.
 
-# [Project Name]
+# Mission Modepossible
 
-[Project description]
+Das Projekt wird zusammen, in zusammenarbeit mit Herr Grafious bearbeitet. Das Ziel unser Projektes ist es für 
+KMU, in der Mode-Branche eine Internetseite zu programmieren, denen zu helfen nachhaltiger zu werden.
 
 ## Team members
 
-### [Jane Dane]
+### Mert Gouisouf
 
 About
 : Some info about Jane
@@ -22,13 +23,13 @@ About
 Matr.-Nr.
 : 1234567
 
-### [Joe Doe]
+### Tamer Abu Hweidi
 
 About
 : Some info about Joe
 
 Matr.-Nr.
-: 1234567
+: 77211892266
 
 ## Eidesstattliche Erklärung
 

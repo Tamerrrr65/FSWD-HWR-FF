@@ -7,3 +7,5 @@ Hier wird man nachhaltiger.
 2. Dann "pip install -r requirements.txt"
 3. Dann "Flask run" ausführen.
 Wenn es nicht klappt, gibt es ein Fehler.
+
+Kann sein die CSS-Datei werden nicht geladen, nach ausführen dann die Seite neuladen.
