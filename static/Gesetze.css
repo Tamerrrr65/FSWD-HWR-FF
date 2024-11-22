@@ -13,11 +13,10 @@
 header {
     grid-area: header;
     background-color: #ffcccb;
-}
-
-.banner {
-    grid-area: banner;
-    background-color: #add8e6;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
 }
 
 .left-aside {
@@ -30,11 +29,6 @@ header {
     color: #ffcccb;
 }
 
-.low-content {
-    grid-area: low-content;
-    background-color: #dda0dd;
-}
-
 .right-aside {
     grid-area: right-aside;
     background-color: #ffb6c1;
@@ -43,13 +37,6 @@ header {
 footer {
     grid-area: footer;
     background-color: #87cefa;
-}
-
-.info-text {
-    border: 1px solid #000;
-    padding: 20px;
-    margin-bottom: 20px;
-    font-size: 16px;
 }
 
 .redirect-button {
