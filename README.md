@@ -9,3 +9,11 @@ Hier wird man nachhaltiger.
 Wenn es nicht klappt, gibt es ein Fehler.
 
 Kann sein die CSS-Datei werden nicht geladen, nach ausführen dann die Seite neuladen.
+
+*Tamer Abu Hweidi*: Entwickelt und finalisiert das User Interface (UI), konzentriert sich auf das Design und sorgt dafür, dass die Benutzeroberfläche intuitiv und ansprechend ist.
+
+*Mert Giousouf*: Implementiert die Registrierung und Anmeldung, stellt sicher, dass Benutzerkonten sicher erstellt und verwaltet werden können.
+
+*Nächster Schritt*: Sobald das Design und die Anmeldung fertig sind, arbeiten beide an der Implementierung der Logik des interaktiven Fragebogens, um personalisierte Empfehlungen basierend auf den Nutzereingaben zu ermöglichen.
+
+*Zusammenarbeit mit Herr Grafious*: Nachdem die grundlegenden Funktionen umgesetzt sind, holen sich beide Unterstützung von Herrn Grafious, um die notwendigen Informationen zu nachhaltigen Materialien, Lieferanten und Zertifizierungen zu recherchieren und zu integrieren. Dies sorgt dafür, dass die Plattform fundierte und aktuelle Daten zur nachhaltigen Rohstoffbeschaffung bietet.
