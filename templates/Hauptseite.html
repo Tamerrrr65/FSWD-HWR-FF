@@ -17,7 +17,17 @@
         </header>
         <div class="left-aside">Linke Sidebar</div>
         <main>
-        <h1>Haupt-Seite</h1>
+            <h1>Haupt-Seite</h1>
+            {% if Angemeldet %}
+                <h2>Willkommen, {{ username }}!</h2>
+                <button onclick="window.location.href='/Abmelden'">Abmelden</button>
+            {% else %}
+                <h3>Melde dich hier an</h3>
+                <a href="/Anmelden">Zurück zum Login</a>
+                <br>
+                <h3>Noch keinen Account?</h3>
+                <a href="/Registrieren">Registrieren</a>
+            {% endif %}
         </main>
         <div class="right-aside">Rechte Sidebar</div>
         <footer>Footer</footer>

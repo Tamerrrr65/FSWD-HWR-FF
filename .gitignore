@@ -6,3 +6,6 @@ venv/
 
 # Ignore instance folder (used by Flask web app, e.g., for SQLite database)
 instance/
+
+# Jeder hat seine eigene lokale Datenbank
+Nutzer.db
