@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Anfang.css') }}">
+    <title>Fragebogen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Frage1.css') }}">
 </head>
-
 <body>
     <div class="container">
 
@@ -49,31 +47,40 @@
         <div class="left-aside">Linke Sidebar</div>
 
         <main>
+            <form action="" method="POST">
+                <section class="frage">
+                    <h2>Hier kommt Frage 1</h2>
+                    <div class="range-container">
+                        <input type="range" name="frage1" min="1" max="10" value="5" id="range1">
+                        <div class="range-labels">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                            <span>6</span>
+                            <span>7</span>
+                            <span>8</span>
+                            <span>9</span>
+                            <span>10</span>
+                        </div>
+                    </div>
+                    <label for="range1">1 = Sehr unzufrieden, 10 = Sehr zufrieden</label>
+                </section>
 
-            <h1>Registrieren</h1>
-            <br>
-            
-            <form method="POST">
-                <label for="username">Benutzername:</label><br>
-                <input type="text" id="username" name="username" required><br><br>
+                <section class="frage">
+                    <h2>Hier dann Frage 2</h2>
+                    <input type="range" name="frage2" min="1" max="10" value="5">
+                    <label for="frage2">1 = Sehr schlecht, 10 = Sehr gut</label>
+                </section>
 
-                <label for="password">Passwort:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
-
-                <button type="submit">Registrieren</button>
+                <div class="submit-container">
+                    <button type="submit" class="button">Auswerten</button>
+                </div>
             </form>
-
-            {% if error %}
-            <p style="color: red;">{{ error }}</p>
-            {% endif %}
-
-            <br>
-            <p>Bereits ein Konto? <a href="/Anmelden">Hier einloggen</a></p>
-
         </main>
 
+        <footer>Footer</footer>
     </div>
-
 </body>
-
 </html>

@@ -40,10 +40,6 @@ def Home():
 def Zweit():
     return render_template('Zweitseite.html')
 
-@app.route('/Test')
-def Test():
-    return render_template('Test.html')
-
 @app.route('/Anmelden', methods=['GET', 'POST'])
 def Anmelden():
     if 'Angemeldet' in session:  # Wenn der Benutzer schon eingeloggt ist
@@ -122,5 +118,20 @@ def Anmeldung_Benötigt(f):
 def Gesichert():
     return f"Hallo {session.get('username')}, dies ist eine geschützte Seite."
 
+@app.route('/Fragebögen')
+def Fragebögen():
+    return render_template('Fragebögen.html')
+
+@app.route('/Frage1')
+def Frage1():
+    return render_template('Frage1.html')
+
+@app.route('/Profil')
+def Profil():
+    if 'Angemeldet' in session:  # Benutzer ist angemeldet
+        return render_template('Profil.html', Angemeldet=True, username=session.get('username'))
+    return render_template('Profil.html', Angemeldet=False)  # Benutzer ist nicht angemeldet
+
 if __name__ == "__main__":
     app.run(debug=True)
+

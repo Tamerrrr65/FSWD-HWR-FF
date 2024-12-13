@@ -50,25 +50,32 @@
 
         <main>
 
-            <h1>Registrieren</h1>
+            <h1>Fragebögen</h1>
+            <br><br>
+
+            <p>Fragebögen helfen uns, Ihre Bedürfnisse besser zu verstehen. 
             <br>
-            
-            <form method="POST">
-                <label for="username">Benutzername:</label><br>
-                <input type="text" id="username" name="username" required><br><br>
+                Bitte wählen Sie einen der folgenden Fragebögen aus:</p>
+            <br><br>
 
-                <label for="password">Passwort:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
+             <ul>
+                <li><a href="/Frage1">Fragebogen 1</a></li>
+                <p>Hier ist text zu Fragebogen 1</p>
+            </ul>
+            <br><br>
 
-                <button type="submit">Registrieren</button>
-            </form>
+            <ul>
+                <li><a href="/Frage1">Fragebogen 2</a></li>
+                <p>Hier ist sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr  viel text zu Fragebogen 2</p>
+            </ul>
+            <br><br>
 
-            {% if error %}
-            <p style="color: red;">{{ error }}</p>
-            {% endif %}
-
-            <br>
-            <p>Bereits ein Konto? <a href="/Anmelden">Hier einloggen</a></p>
+            <ul>
+                <li><a href="/Frage1"> Fragebogen 3 und Fragebogen 3 </a></li>
+                <p>Hier ist text zu Fragebogen 3 und 
+                <br><br><br><br>
+                mehrere br dazwischen</p>
+            </ul>
 
         </main>
 

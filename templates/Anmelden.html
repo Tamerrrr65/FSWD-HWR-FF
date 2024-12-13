@@ -1,47 +1,79 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmelden-Seite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Test.css') }}">
+    <title>Meine Webseite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Anfang.css') }}">
 </head>
+
 <body>
     <div class="container">
-        <header>
-            <button class="redirect-button" onclick="window.location.href='/'">Button, auf die Hauptseite</button>
-            <button class="redirect-button" onclick="window.location.href='/Zweitseite'">Button, der ein weiterleitet</button>
-            <button class="redirect-button" onclick="window.location.href='/Test'">Button auf die Testseite</button>
-            <button class="redirect-button" onclick="window.location.href='/Registrieren'">Zu der Registrieren-Seite</button>
-            <button class="redirect-button" onclick="window.location.href='/Gesetze'">Zu den Gesetzen</button>
-        </header>
+
+        <ul>
+            <div class="left-section">
+                <li><button onclick="window.location.href='/'">Home</button></li>
+            </div>
+
+            <div class="middle-section"></div>
+
+            <div class="right-section">
+                <li>
+                    <a href="/Fragebögen">Fragebögen▾</a>
+                    <ul class="dropdown">
+                        <li><a href="/Frage1">Fragebogen 1</a></li>
+                        <li><a href="/Frage2">Fragebogen 2</a></li>
+                        <li><a href="/Frage3">Fragebogen 3</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/Gesetze">Gesetze</a></li>
+                <li><a href="/Zweitseite">Zweitseite</a></li>
+
+                <li>
+                    <a href="#">Menü▾</a>
+                    <ul class="dropdown">
+                        {% if Angemeldet %}
+                            <li><a href="/Profil">Profil</a></li>
+                            <li><a href="/Abmelden">Abmelden</a></li>
+                        {% else %}
+                            <li><a href="/Anmelden">Anmelden</a></li>
+                            <li><a href="/Registrieren">Registrieren</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </div>
+        </ul>
+
         <div class="left-aside">Linke Sidebar</div>
 
         <main>
-        <h1>Anmelden-Seite</h1>
 
-        <form method="POST">
-            <label for="username">Benutzername:</label><br>
-            <input type="text" id="username" name="username" required><br><br>
+            <h1>Anmelden</h1>
+            <br>
+            
+            <form method="POST">
+                <label for="username">Benutzername:</label><br>
+                <input type="text" id="username" name="username" required><br><br>
 
-            <label for="password">Passwort:</label><br>
-            <input type="password" id="password" name="password" required><br><br>
+                <label for="password">Passwort:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
 
-           <button type="submit">Einloggen</button>
-        </form>
+                <button type="submit">Einloggen</button>
+            </form>
 
-        {% if error %}
-        <p style="color: red;">{{ error }}</p>
-        {% endif %}
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
 
+            <br>
             <p>Kein Konto? <a href="/Registrieren">Hier registrieren</a></p>
 
-            <!-- Alternativ ein Button, der zur Registrierung führt -->
-            <button onclick="window.location.href='/Registrieren'">Zur Registrierung</button>
         </main>
 
-        <div class="right-aside">Rechte Sidebar</div>
-        <footer>Footer</footer>
     </div>
+
 </body>
+
 </html>

@@ -50,27 +50,26 @@
 
         <main>
 
-            <h1>Registrieren</h1>
+            <h1>Profilseite</h1>
+            <br><br>
+            
+            <h2>Willkommen, {{ username }}</h2>
+            <br>
+
+            <p>Hier sind Ihre Profilinformationen:</p>
+            <br>
+
+            <ul>
+                <li>Benutzername: {{ username }}</li>
+                <!-- Hier soll man weitere Profilinformationen hinzufügen -->
+            </ul>
             <br>
             
-            <form method="POST">
-                <label for="username">Benutzername:</label><br>
-                <input type="text" id="username" name="username" required><br><br>
-
-                <label for="password">Passwort:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
-
-                <button type="submit">Registrieren</button>
-            </form>
-
-            {% if error %}
-            <p style="color: red;">{{ error }}</p>
-            {% endif %}
-
-            <br>
-            <p>Bereits ein Konto? <a href="/Anmelden">Hier einloggen</a></p>
+            <button onclick="window.location.href='/Abmelden'">Abmelden</button>
 
         </main>
+
+        <footer>Footer</footer>
 
     </div>
 
