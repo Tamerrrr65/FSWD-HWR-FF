@@ -4,13 +4,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from functools import wraps
 
-# Diese Funktion erstellt die SQLite-Datenbank und die Tabelle
 def init_db():
     if not os.path.exists('Nutzer.db'):
-        conn = sqlite3.connect('Nutzer.db')  # Diese Zeile erstellt die Datei, wenn sie noch nicht existiert
+        conn = sqlite3.connect('Nutzer.db')  
         cursor = conn.cursor()
         
-        # Tabelle erstellen
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,7 +22,6 @@ def init_db():
     else:
         print("Datenbank existiert bereits.")
 
-# Datenbank initialisieren
 init_db()
 
 app = Flask(__name__)
@@ -32,9 +29,9 @@ app.secret_key = 'dein_secret_key'
 
 @app.route('/')
 def Home():
-    if 'Angemeldet' in session:  # Benutzer ist angemeldet
+    if 'Angemeldet' in session:  
         return render_template('Hauptseite.html', Angemeldet=True, username=session.get('username'))
-    return render_template('Hauptseite.html', Angemeldet=False)  # Benutzer ist nicht angemeldet
+    return render_template('Hauptseite.html', Angemeldet=False)  
 
 @app.route('/Zweitseite')
 def Zweit():
@@ -42,35 +39,35 @@ def Zweit():
 
 @app.route('/Anmelden', methods=['GET', 'POST'])
 def Anmelden():
-    if 'Angemeldet' in session:  # Wenn der Benutzer schon eingeloggt ist
+    if 'Angemeldet' in session:  
         return redirect(url_for('Home'))
     
-    if request.method == 'POST':  # Wenn das Formular abgesendet wird
+    if request.method == 'POST':  
         username = request.form['username']
         password = request.form['password']
      
         conn = sqlite3.connect('Nutzer.db')
         cursor = conn.cursor()
         cursor.execute('SELECT password FROM users WHERE username = ?', (username,))
-        result = cursor.fetchone()  # Nur ein Ergebnis zurückholen
+        result = cursor.fetchone()  
         conn.close()
 
-        if result:  # Wenn der Benutzer existiert
-            stored_password = result[0]  # Das gespeicherte Passwort holen
-            if check_password_hash(stored_password, password):  # Passwort überprüfen
+        if result:  
+            stored_password = result[0]  
+            if check_password_hash(stored_password, password):  
                 session['Angemeldet'] = True
                 session['username'] = username
-                return redirect(url_for('Home'))  # Zur Hauptseite weiterleiten
+                return redirect(url_for('Home'))  
             else:
-                return render_template('Anmelden.html', error="Falsches Passwort")  # Fehlermeldung bei falschem Passwort
+                return render_template('Anmelden.html', error="Falsches Passwort")  
         else:
-            return render_template('Anmelden.html', error="Benutzer nicht gefunden")  # Fehlermeldung bei Benutzer nicht gefunden
+            return render_template('Anmelden.html', error="Benutzer nicht gefunden")  
     
     return render_template('Anmelden.html')
 
 @app.route('/Registrieren', methods=['GET', 'POST'])
 def Registrieren():
-    if 'Angemeldet' in session:  # Wenn der Benutzer angemeldet ist
+    if 'Angemeldet' in session:  
         return redirect(url_for('Home'))
 
     if request.method == 'POST':
@@ -104,12 +101,11 @@ def Abmelden():
     session.pop('username', None)
     return redirect(url_for('Home'))
 
-# Diese Funktion stellt sicher, dass die geschützte Seite nur für eingeloggte Benutzer zugänglich ist
 def Anmeldung_Benötigt(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if 'Angemeldet' not in session:
-            return redirect(url_for('Home'))  # Wenn der Benutzer nicht eingeloggt ist, leite ihn zum Anmelden weiter
+            return redirect(url_for('Home'))  
         return f(*args, **kwargs)
     return decorated_function
 
@@ -122,16 +118,29 @@ def Gesichert():
 def Fragebögen():
     return render_template('Fragebögen.html')
 
-@app.route('/Frage1')
-def Frage1():
-    return render_template('Frage1.html')
+@app.route('/Nachhaltigkeit')
+def Nachhaltigkeit():
+    if 'Angemeldet' in session:  
+        return render_template('Nachhaltigkeit.html', Angemeldet=True, username=session.get('username'))
+    return render_template('Nachhaltigkeit.html')
+
+@app.route('/Empfehlungen')
+def Empfehlungen():
+    if 'Angemeldet' in session:  
+        return render_template('Empfehlungen.html', Angemeldet=True, username=session.get('username'))
+    return render_template('Empfehlungen.html')
 
 @app.route('/Profil')
 def Profil():
-    if 'Angemeldet' in session:  # Benutzer ist angemeldet
+    if 'Angemeldet' in session:  
         return render_template('Profil.html', Angemeldet=True, username=session.get('username'))
-    return render_template('Profil.html', Angemeldet=False)  # Benutzer ist nicht angemeldet
+    return render_template('Profil.html', Angemeldet=False)  
+
+@app.route('/Ergebnisse')
+def Ergebnisse():
+    if 'Angemeldet' in session:  
+        return render_template('Ergebnisse.html', Angemeldet=True, username=session.get('username'))
+    return render_template('Ergebnisse.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
-

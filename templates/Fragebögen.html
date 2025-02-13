@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Anfang.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Empfehlungen.css') }}">
 </head>
 
 <body>
@@ -22,20 +22,19 @@
                 <li>
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
-                        <li><a href="/Frage1">Fragebogen 1</a></li>
-                        <li><a href="/Frage2">Fragebogen 2</a></li>
-                        <li><a href="/Frage3">Fragebogen 3</a></li>
+
                     </ul>
                 </li>
 
-                <li><a href="/Gesetze">Gesetze</a></li>
-                <li><a href="/Zweitseite">Zweitseite</a></li>
+                <li><a href="/Empfehlungen">Empfehlungen</a></li>
+                <li><a href="/Nachhaltigkeit">Nachhaltigkeit</a></li>
 
                 <li>
                     <a href="#">Menü▾</a>
                     <ul class="dropdown">
                         {% if Angemeldet %}
                             <li><a href="/Profil">Profil</a></li>
+                            <li><a href="/Ergebnisse">Ergebnisse des Fragebogens</a></li>
                             <li><a href="/Abmelden">Abmelden</a></li>
                         {% else %}
                             <li><a href="/Anmelden">Anmelden</a></li>
@@ -46,38 +45,22 @@
             </div>
         </ul>
 
-        <div class="left-aside">Linke Sidebar</div>
-
         <main>
 
             <h1>Fragebögen</h1>
-            <br><br>
+            <br>
 
             <p>Fragebögen helfen uns, Ihre Bedürfnisse besser zu verstehen. 
+            <br>
             <br>
                 Bitte wählen Sie einen der folgenden Fragebögen aus:</p>
             <br><br>
 
-             <ul>
-                <li><a href="/Frage1">Fragebogen 1</a></li>
-                <p>Hier ist text zu Fragebogen 1</p>
-            </ul>
-            <br><br>
-
-            <ul>
-                <li><a href="/Frage1">Fragebogen 2</a></li>
-                <p>Hier ist sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr sehr  viel text zu Fragebogen 2</p>
-            </ul>
-            <br><br>
-
-            <ul>
-                <li><a href="/Frage1"> Fragebogen 3 und Fragebogen 3 </a></li>
-                <p>Hier ist text zu Fragebogen 3 und 
-                <br><br><br><br>
-                mehrere br dazwischen</p>
-            </ul>
+            
 
         </main>
+
+        <footer>Footer</footer>
 
     </div>
 

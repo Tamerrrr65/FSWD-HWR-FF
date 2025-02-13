@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Anfang.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Profil.css') }}">
 </head>
 
 <body>
@@ -22,19 +22,19 @@
                 <li>
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
-                        <li><a href="/Frage1">Fragebogen 1</a></li>
-                        <li><a href="/Frage2">Fragebogen 2</a></li>
-                        <li><a href="/Frage3">Fragebogen 3</a></li>
+
                     </ul>
                 </li>
 
-                <li><a href="/Gesetze">Gesetze</a></li>
+                <li><a href="/Empfehlungen">Empfehlungen</a></li>
+                <li><a href="/Nachhaltigkeit">Nachhaltigkeit</a></li>
 
                 <li>
                     <a href="#">Menü▾</a>
                     <ul class="dropdown">
                         {% if Angemeldet %}
                             <li><a href="/Profil">Profil</a></li>
+                            <li><a href="/Ergebnisse">Ergebnisse des Fragebogens</a></li>
                             <li><a href="/Abmelden">Abmelden</a></li>
                         {% else %}
                             <li><a href="/Anmelden">Anmelden</a></li>
@@ -45,32 +45,14 @@
             </div>
         </ul>
 
-        <div class="left-aside">Linke Sidebar</div>
-
+        
         <main>
-
-            <h1>Zweit-Seite</h1>
-            <br><br>
-
-            {% if Angemeldet %}
-                <h2>Willkommen, {{ username }}!</h2>
-                <br><br>
-            {% endif %}
-
-            <section>
-
-                <h2>Hier ein Text zu der Zweitseite</h2>
-                <p>
-                    Hier kommt dann der Text zu der Zweitseite.
-                </p>
-
-            </section>
-
-          </main>
-
+            <h1>Ausgefüllten Fragebögen</h1>
+        </main>
+        
         <footer>Footer</footer>
-
     </div>
+
 </body>
 
 </html>

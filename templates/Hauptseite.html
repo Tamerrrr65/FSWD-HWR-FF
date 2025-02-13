@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Anfang.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ModernAnfang.css') }}">
 </head>
 
 <body>
@@ -22,20 +22,19 @@
                 <li>
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
-                        <li><a href="/Frage1">Fragebogen 1</a></li>
-                        <li><a href="/Frage2">Fragebogen 2</a></li>
-                        <li><a href="/Frage3">Fragebogen 3</a></li>
+
                     </ul>
                 </li>
 
-                <li><a href="/Gesetze">Gesetze</a></li>
-                <li><a href="/Zweitseite">Zweitseite</a></li>
+                <li><a href="/Empfehlungen">Empfehlungen</a></li>
+                <li><a href="/Nachhaltigkeit">Nachhaltigkeit</a></li>
 
                 <li>
                     <a href="#">Menü▾</a>
                     <ul class="dropdown">
                         {% if Angemeldet %}
                             <li><a href="/Profil">Profil</a></li>
+                            <li><a href="/Ergebnisse">Ergebnisse des Fragebogens</a></li>
                             <li><a href="/Abmelden">Abmelden</a></li>
                         {% else %}
                             <li><a href="/Anmelden">Anmelden</a></li>
@@ -46,55 +45,38 @@
             </div>
         </ul>
 
-        <div class="left-aside">Linke Sidebar</div>
-
         <main>
-            <h1>Haupt-Seite</h1>
-            <br><br>
+    <h1>Nachhaltige Mode beginnt hier.</h1>
+    Du möchtest ein Mode-Startup gründen und dabei verantwortungsvoll mit Ressourcen umgehen? Unsere Plattform hilft dir, die besten nachhaltigen Rohstoffe zu finden – einfach, schnell und passend zu deinen Prioritäten.<br>
 
-            {% if Angemeldet %}
-                <h2>Willkommen, {{ username }}!</h2>
-                <br>
-                <button onclick="window.location.href='/Abmelden'">Abmelden</button>
-                <br><br>
-            {% endif %}
+    <section>
+        <h2>Warum nachhaltige Rohstoffe wichtig sind</h2>
+        <br>
+        <p>
+        Rohstoffe machen einen großen Teil des ökologischen Fußabdrucks aus. Mit bewussten Entscheidungen legst du den Grundstein für umweltfreundliche Kollektionen, die nicht nur stilvoll, sondern auch zukunftsfähig sind.
+        </section>
 
-            <section>
-                <h2>Warum ist Nachhaltigkeit wichtig?</h2>
-                <br>
-                <p>
-                    Nachhaltigkeit ist entscheidend, um die natürlichen Ressourcen der Erde zu bewahren. Wenn wir nicht lernen, 
-                    verantwortungsvoll mit den begrenzten Ressourcen umzugehen, riskieren wir, die Umwelt zu schädigen und künftige 
-                    Generationen zu gefährden. Nachhaltige Praktiken in allen Bereichen, von der Energieversorgung bis zur Landwirtschaft, 
-                    tragen dazu bei, den ökologischen Fußabdruck zu verringern und die Biodiversität zu schützen.
-                </p>
-            </section>
+    <br>
 
-            <br>
+    <section>
+        <h2>Was wir bieten</h2>
+        <br>
+        <p>
+        Wir machen Nachhaltigkeit einfach: Mit unserer Plattform kannst du Rohstofflieferanten finden, die ökologische und soziale Standards einhalten. Passe deine Auswahl individuell an und entdecke innovative Materialien, die deinen Ansprüchen gerecht werden
+        </section>
 
-            <section>
-                <h2>Nachhaltigkeit im Alltag</h2>
-                <br>
-                <p>
-                    Jeder kann im Alltag einen Beitrag zur Nachhaltigkeit leisten, sei es durch das Reduzieren von Plastik, 
-                    den Einsatz von erneuerbaren Energien oder die Unterstützung nachhaltiger Produkte. Indem wir unser Konsumverhalten 
-                    überdenken und nachhaltige Entscheidungen treffen, können wir die Umweltauswirkungen verringern und einen positiven Einfluss 
-                    auf die Gesellschaft ausüben.
-                </p>
-            </section>
+    <section>
+        <h2>Starte jetzt mit den Fragebögen</h2>
+        <br>
+        <p>
+        Welche Prioritäten sind dir wichtig? Ob recycelte Stoffe, faire Produktion oder umweltfreundliche Verpackung – unser Fragebogen hilft dir, die richtigen Entscheidungen zu treffen.
+        </section>
 
-            <br><br><br>
-
-            {% if not Angemeldet %}
-                <h3>Melde dich hier an</h3>
-                <a href="/Anmelden">Zurück zum Login</a>
-                <br><br>
-
-                <h3>Noch keinen Account?</h3>
-                <a href="/Registrieren">Registrieren</a>
-            {% endif %}
-
-        </main>
+    <div class="button-container">
+        <button onclick="window.location.href='/Fragebögen'">Starte den Fragebogen</button>
+    </div>
+    
+</main>
 
         <footer>Footer</footer>
 

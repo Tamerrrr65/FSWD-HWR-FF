@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meine Webseite</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Profil.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ModernAnfang.css') }}">
 </head>
 
 <body>
@@ -26,7 +26,6 @@
                     </ul>
                 </li>
 
-                <li><a href="/Empfehlungen">Empfehlungen</a></li>
                 <li><a href="/Nachhaltigkeit">Nachhaltigkeit</a></li>
 
                 <li>
@@ -46,26 +45,33 @@
         </ul>
 
         <main>
+        
+    <h1>Was können wir dir empfehlen?</h1>
 
-            <h1>Profilseite</h1>
-            <br><br>
-            
-            <h2>Willkommen, {{ username }}</h2>
-            <br>
 
-            <p>Hier sind Ihre Profilinformationen:</p>
-            <br>
-            
-                <label for="username">Benutzername:</label>
-                <input type="text" id="username" name="username" value="{{ username }}" required>
-                
-            <br>
-            <br>
-            <br>
-            <br>
-            
-            <button onclick="window.location.href='/Abmelden'">Abmelden</button>
+    <section>
+        <h2>Empfehlung 1</h2>
+        <br>
+        <p>
+        Anstatt Stoffe vom Ausland zu bestellen, kannst du auch auf regionale Anbieter zurückgreifen. Das spart nicht nur Transportkosten, sondern unterstützt auch die lokale Wirtschaft.
+        </section>  
 
+            <section>
+                <h2>Empfehlung 2</h2>
+                <br>
+                <p>
+                Überlege, ob du recycelte Materialien verwenden kannst. Diese sind oft günstiger und tragen zur Reduzierung von Abfall bei.
+                </p>
+            </section>
+
+            <section>
+                <h2>Empfehlung 3</h2>
+                <br>
+                <p>
+                Versuche, in größeren Mengen zu bestellen, um von Mengenrabatten zu profitieren und die Anzahl der Lieferungen zu reduzieren.
+                </p>
+            </section>
+        
         </main>
 
         <footer>Footer</footer>
