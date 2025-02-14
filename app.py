@@ -7,7 +7,6 @@ from functools import wraps
 from datetime import datetime
 from Datenbanken import init_db, get_frageboegen, fragen_nach_datum_sortiert
 
-# Datenbank initialisieren
 init_db()
 
 app = Flask(__name__)
@@ -168,10 +167,13 @@ def submit_fragebogen():
             antwort = int(request.form[f'frage{frage_id}'])
         else:
             antwort = int(request.form[f'frage{frage_id}'])
+            if antwort == 0:
+                antwort = 2
+            elif antwort == 1:
+                antwort = 1
         
         conn = sqlite3.connect('Datenbanken/antworten.db')
         cursor = conn.cursor()
-
         cursor.execute('''
             INSERT INTO frageboegen_antworten (nutzer_id, frageboegen_id, fragen_id, antwort)
             VALUES (?, ?, ?, ?)
@@ -190,7 +192,8 @@ def submit_fragebogen():
             SELECT auswertungs_text
             FROM auswertungen
             WHERE fragen_id = ? AND auswahlmoeglichkeit = ?
-        ''', (frage_id, antwort))
+        ''', (frage_id, str(antwort)))
+
 
         print(frage_id, antwort)
 
@@ -203,12 +206,44 @@ def submit_fragebogen():
 
     return redirect(url_for('Ergebnisse'))
 
+@app.route('/beantworteter_fragebogen_loeschen', methods=['POST'])
+@Anmeldung_Benötigt
+def beantworteter_fragebogen_loeschen():
+    nutzer_id = session.get('nutzer_id')
+    fragebogen_id = request.form.get('fragebogen_id')
+    erstellt_am = request.form.get('erstellt_am')
+
+    if not fragebogen_id or not erstellt_am:
+        return redirect(url_for('Ergebnisse'))
+
+    try:
+        conn = sqlite3.connect('Datenbanken/antworten.db')
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            DELETE FROM frageboegen_antworten 
+            WHERE nutzer_id = ? 
+            AND frageboegen_id = ? 
+            AND erstellt_am = ?
+        """, (nutzer_id, fragebogen_id, erstellt_am))
+
+        conn.commit()
+        conn.close()
+
+    except Exception as e:
+        print(f"Fehler beim Löschen des Fragebogens: {e}")
+
+    return redirect(url_for('Ergebnisse'))
+
 @app.route('/Ergebnisse')
 def Ergebnisse():
     frageboegen = get_frageboegen()
 
     if 'Angemeldet' in session:
         nutzer_id = session.get('nutzer_id')
+
+        if not nutzer_id:
+            return redirect(url_for('Anmelden'))
 
         conn = sqlite3.connect('Datenbanken/nutzer.db')
         conn.execute("PRAGMA foreign_keys = ON;")
@@ -219,8 +254,6 @@ def Ergebnisse():
         cursor.execute("ATTACH DATABASE 'Datenbanken/antworten.db' AS antworten;")
         cursor.execute("ATTACH DATABASE 'Datenbanken/frageboegen.db' AS frageboegen;")
         cursor.execute("ATTACH DATABASE 'Datenbanken/auswertungen.db' AS auswertungen;")
-
-        nutzer_id = 1
 
         cursor.execute("""
             SELECT 
@@ -241,12 +274,8 @@ def Ergebnisse():
         """, (nutzer_id,))
 
         results = cursor.fetchall()
-        for row in results:
-            print(row)
-
         conn.close()
 
-        print(results)
         fragebogen_data = {}
         for row in results:
             fragebogen_id = row[0]
@@ -258,9 +287,9 @@ def Ergebnisse():
 
             antwort = row[5]
             if row[4] == 'radio' and row[5] == '1': 
-                antwort = 'Yes'
+                antwort = 'Ja'
             elif row[4] == 'radio' and row[5] == '0':
-                antwort = 'No'
+                antwort = 'Nein'
 
             frage_data = {
                 'erstellt_am': row[2],
@@ -272,7 +301,6 @@ def Ergebnisse():
             fragebogen_data[fragebogen_id]['fragen'].append(frage_data)
 
         results = fragen_nach_datum_sortiert(fragebogen_data)
-        print(results)
 
         return render_template(
             'Ergebnisse.html', 

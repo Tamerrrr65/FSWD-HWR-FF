@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
+    <title>Empfehlungen</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='ModernAnfang.css') }}">
 </head>
 
@@ -13,7 +13,9 @@
 
         <ul>
             <div class="left-section">
-                <li><button onclick="window.location.href='/'">Home</button></li>
+                <li>
+                    <button onclick="window.location.href='/'">Home</button>
+                </li>
             </div>
 
             <div class="middle-section"></div>
@@ -23,15 +25,20 @@
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
                         {% for fragebogen in frageboegen %}
-                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                            <li>
+                                <a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">
+                                    {{ fragebogen[1] }}
+                                </a>
+                            </li>
                         {% else %}
                             <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
                         {% endfor %}
-
                     </ul>
                 </li>
 
-                <li><a href="/Nachhaltigkeit">Nachhaltigkeit</a></li>
+                <li>
+                    <a href="/Nachhaltigkeit">Nachhaltigkeit</a>
+                </li>
 
                 <li>
                     <a href="#">Menü▾</a>
@@ -50,22 +57,21 @@
         </ul>
 
         <main>
-        
-    <h1>Was können wir dir empfehlen?</h1>
+            <h1>Was können wir dir empfehlen?</h1>
 
-
-    <section>
-        <h2>Empfehlung 1</h2>
-        <br>
-        <p>
-        Anstatt Stoffe vom Ausland zu bestellen, kannst du auch auf regionale Anbieter zurückgreifen. Das spart nicht nur Transportkosten, sondern unterstützt auch die lokale Wirtschaft.
-        </section>  
+            <section>
+                <h2>Empfehlung 1</h2>
+                <br>
+                <p>
+                    Anstatt Stoffe vom Ausland zu bestellen, kannst du auch auf regionale Anbieter zurückgreifen. Das spart nicht nur Transportkosten, sondern unterstützt auch die lokale Wirtschaft.
+                </p>
+            </section>
 
             <section>
                 <h2>Empfehlung 2</h2>
                 <br>
                 <p>
-                Überlege, ob du recycelte Materialien verwenden kannst. Diese sind oft günstiger und tragen zur Reduzierung von Abfall bei.
+                    Überlege, ob du recycelte Materialien verwenden kannst. Diese sind oft günstiger und tragen zur Reduzierung von Abfall bei.
                 </p>
             </section>
 
@@ -73,16 +79,16 @@
                 <h2>Empfehlung 3</h2>
                 <br>
                 <p>
-                Versuche, in größeren Mengen zu bestellen, um von Mengenrabatten zu profitieren und die Anzahl der Lieferungen zu reduzieren.
+                    Versuche, in größeren Mengen zu bestellen, um von Mengenrabatten zu profitieren und die Anzahl der Lieferungen zu reduzieren.
                 </p>
             </section>
-        
         </main>
 
-        <footer>Footer</footer>
+        <footer>
+
+        </footer>
 
     </div>
-
 </body>
 
 </html>

@@ -13,7 +13,9 @@
 
         <ul>
             <div class="left-section">
-                <li><button onclick="window.location.href='/'">Home</button></li>
+                <li>
+                    <button onclick="window.location.href='/'">Home</button>
+                </li>
             </div>
 
             <div class="middle-section"></div>
@@ -23,11 +25,14 @@
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
                         {% for fragebogen in frageboegen %}
-                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                            <li>
+                                <a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">
+                                    {{ fragebogen[1] }}
+                                </a>
+                            </li>
                         {% else %}
                             <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
                         {% endfor %}
-
                     </ul>
                 </li>
 
@@ -49,44 +54,54 @@
             </div>
         </ul>
 
-
         <main>
             <h1>Nachhaltigkeit in der Mode – Was bedeutet das?</h1>
-            Nachhaltigkeit ist nicht nur ein Schlagwort, sondern eine Verantwortung gegenüber unserer Umwelt, Gesellschaft und Wirtschaft. Als Mode-Startup hast du die Chance, Teil einer Bewegung zu sein, die Ressourcen schützt, faire Arbeitsbedingungen fördert und eine lebenswerte Zukunft gestaltet.
+            <p>
+                Nachhaltigkeit ist nicht nur ein Schlagwort, sondern eine Verantwortung gegenüber unserer Umwelt, Gesellschaft und Wirtschaft. 
+                Als Mode-Startup hast du die Chance, Teil einer Bewegung zu sein, die Ressourcen schützt, faire Arbeitsbedingungen fördert und eine lebenswerte Zukunft gestaltet.
+            </p>
 
             <section>
                 <h2>Unser Planet braucht Lösungen, keine Ausreden</h2>
                 <br>
                 <p>
-                Die Modeindustrie gehört zu den größten Umweltverschmutzern der Welt. Jedes Jahr landen Millionen Tonnen ungenutzter Kleidung auf Deponien, während die Produktion enorme Mengen an Wasser, Energie und Chemikalien verbraucht. Nachhaltigkeit bedeutet, den Kreislauf zu durchbrechen und eine verantwortungsvolle Alternative zu schaffen.</section>
+                    Die Modeindustrie gehört zu den größten Umweltverschmutzern der Welt. Jedes Jahr landen Millionen Tonnen ungenutzter Kleidung auf Deponien, während die Produktion enorme Mengen an Wasser, Energie und Chemikalien verbraucht. 
+                    Nachhaltigkeit bedeutet, den Kreislauf zu durchbrechen und eine verantwortungsvolle Alternative zu schaffen.
+                </p>
+            </section>
             <br>
 
             <section>
                 <h2>Drei Säulen der Nachhaltigkeit</h2>
                 <br>
                 <p>
-                Umwelt: Materialien nutzen, die erneuerbar, recycelt oder biologisch abbaubar sind, und den ökologischen Fußabdruck reduzieren. <br>
-                Soziales: Faire Löhne und sichere Arbeitsbedingungen entlang der Lieferkette sicherstellen. <br>
-                Wirtschaft: Produkte schaffen, die langfristig tragbar sind – nicht nur für die Umwelt, sondern auch für Unternehmen.</section>
+                    <strong>Umwelt:</strong> Materialien nutzen, die erneuerbar, recycelt oder biologisch abbaubar sind, und den ökologischen Fußabdruck reduzieren. <br>
+                    <strong>Soziales:</strong> Faire Löhne und sichere Arbeitsbedingungen entlang der Lieferkette sicherstellen. <br>
+                    <strong>Wirtschaft:</strong> Produkte schaffen, die langfristig tragbar sind – nicht nur für die Umwelt, sondern auch für Unternehmen.
+                </p>
+            </section>
 
             <section>
                 <h2>Nachhaltigkeit ist eine Win-Win-Situation</h2>
                 <br>
                 <p>
-                Für deinen Kunden: Immer mehr Menschen suchen nach Marken, die Werte und Qualität vereinen. <br>
-                Für deinen Erfolg: Nachhaltigkeit ist kein Kostenfaktor, sondern eine Investition in Innovation und Marktchancen. <br>
-                Für unseren Planeten: Jeder Beitrag zählt, um den Klimawandel zu bremsen und Ressourcen zu schonen.</section>
+                    <strong>Für deinen Kunden:</strong> Immer mehr Menschen suchen nach Marken, die Werte und Qualität vereinen. <br>
+                    <strong>Für deinen Erfolg:</strong> Nachhaltigkeit ist kein Kostenfaktor, sondern eine Investition in Innovation und Marktchancen. <br>
+                    <strong>Für unseren Planeten:</strong> Jeder Beitrag zählt, um den Klimawandel zu bremsen und Ressourcen zu schonen.
+                </p>
+            </section>
 
             <div class="button-container">
                 <button onclick="window.location.href='/Fragebögen'">Starte den Fragebogen</button>
             </div>
-    
         </main>
 
+        <footer>
 
-        <footer>Footer</footer>
+        </footer>
 
     </div>
+
 </body>
 
 </html>

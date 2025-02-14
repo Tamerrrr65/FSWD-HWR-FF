@@ -13,7 +13,9 @@
 
         <ul>
             <div class="left-section">
-                <li><button onclick="window.location.href='/'">Home</button></li>
+                <li>
+                    <button onclick="window.location.href='/'">Home</button>
+                </li>
             </div>
 
             <div class="middle-section"></div>
@@ -23,11 +25,14 @@
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
                         {% for fragebogen in frageboegen %}
-                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                            <li>
+                                <a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">
+                                    {{ fragebogen[1] }}
+                                </a>
+                            </li>
                         {% else %}
                             <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
                         {% endfor %}
-
                     </ul>
                 </li>
 
@@ -68,17 +73,19 @@
             </form>
 
             {% if error %}
-            <p style="color: red;">{{ error }}</p>
+                <p style="color: red;">{{ error }}</p>
             {% endif %}
 
             <br>
             <p>Bereits ein Konto? <a href="/Anmelden">Hier einloggen</a></p>
-
         </main>
 
-        <footer>Footer</footer>
+        <footer>
+
+        </footer>
 
     </div>
+
 </body>
 
 </html>

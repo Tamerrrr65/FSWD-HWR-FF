@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
+    <title>Ergebnisse</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Profil.css') }}">
 </head>
 
@@ -13,7 +13,9 @@
 
         <ul>
             <div class="left-section">
-                <li><button onclick="window.location.href='/'">Home</button></li>
+                <li>
+                    <button onclick="window.location.href='/'">Home</button>
+                </li>
             </div>
 
             <div class="middle-section"></div>
@@ -23,11 +25,14 @@
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
                         {% for fragebogen in frageboegen %}
-                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                            <li>
+                                <a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">
+                                    {{ fragebogen[1] }}
+                                </a>
+                            </li>
                         {% else %}
-                            <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
+                            <p>Keine Fragebögen verfügbar. Kann sein, dass es ein Problem mit der Datenbank gibt.</p>
                         {% endfor %}
-
                     </ul>
                 </li>
 
@@ -50,17 +55,25 @@
             </div>
         </ul>
 
-        
         <main>
-            <h1>Ausgefüllten Fragebögen</h1>
+            <h1>Ausgefüllte Fragebögen</h1>
 
             {% if results %}
                 {% for fragebogen_id, data in results.items() %}
                     <section style="margin-bottom: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 8px;">
                         <h2>{{ data.titel }}</h2>
-                        
-                        {% for creation_date, fragen in data.grouped_questions.items() %}
-                            <p><strong>Datum:</strong> {{ creation_date }}</p>
+
+                        {% for erstellt_am, fragen in data.grouped_questions.items() %}
+                            <p><strong>Datum:</strong> {{ erstellt_am }}</p>
+
+                            <form action="{{ url_for('beantworteter_fragebogen_loeschen') }}" method="POST" onsubmit="return confirm('Möchtest du diesen ausgefüllten Fragebogen wirklich löschen?');">
+                                <input type="hidden" name="fragebogen_id" value="{{ fragebogen_id }}">
+                                <input type="hidden" name="erstellt_am" value="{{ erstellt_am }}">
+                                <button type="submit" style="background-color: red; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 5px;">
+                                    Diesen Eintrag löschen
+                                </button>
+                            </form>
+
                             <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
                                 <thead>
                                     <tr style="background-color: #ddd;">
@@ -73,7 +86,19 @@
                                     {% for frage in fragen %}
                                         <tr>
                                             <td style="padding: 8px; border: 1px solid #ddd;">{{ frage.frage_text }}</td>
-                                            <td style="padding: 8px; border: 1px solid #ddd;">{{ frage.antwort }}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">
+                                                {% if frage.fragen_art == 'radio' %}
+                                                    {% if frage.antwort == 1 %}
+                                                        Ja
+                                                    {% elif frage.antwort == 2 %}
+                                                        Nein
+                                                    {% else %}
+                                                        {{ frage.antwort }}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {{ frage.antwort }}
+                                                {% endif %}
+                                            </td>
                                             <td style="padding: 8px; border: 1px solid #ddd;">{{ frage.auswertungs_text }}</td>
                                         </tr>
                                     {% endfor %}
@@ -86,8 +111,11 @@
                 <p>Keine Fragebögen verfügbar</p>
             {% endif %}
         </main>
-        
-        <footer>Footer</footer>
+
+        <footer>
+
+        </footer>
+
     </div>
 
 </body>

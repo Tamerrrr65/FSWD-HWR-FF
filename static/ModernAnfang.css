@@ -48,12 +48,13 @@ footer {
 }
 
 ul {
+    grid-area: header;
     background: linear-gradient(135deg, #6a994e, #a7c957);
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
-    padding: 25px 0;
+    padding: 10px 20px;
     list-style: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -61,7 +62,6 @@ ul {
 ul .left-section {
     display: flex;
     gap: 10px;
-    padding: 10px;
     flex: 1;
 }
 
@@ -76,18 +76,16 @@ ul li {
     position: relative;
 }
 
-ul a,
-ul button {
+ul a, ul button {
     color: #fff;
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: background 0.3s, transform 0.2s ease-in-out;
     font-weight: 500;
+    transition: background 0.3s, transform 0.2s ease-in-out;
 }
 
-ul a:hover,
-ul button:hover {
+ul a:hover, ul button:hover {
     background: rgba(0, 0, 0, 0.15);
     transform: translateY(-3px);
 }
@@ -96,7 +94,7 @@ ul .dropdown {
     display: none;
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0;
     background-color: #f9fafc;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -119,7 +117,6 @@ ul .dropdown li a {
 
 ul .dropdown li a:hover {
     background-color: #e9ecef;
-    border-radius: 0;
 }
 
 main {

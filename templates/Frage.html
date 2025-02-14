@@ -11,7 +11,9 @@
 
         <ul>
             <div class="left-section">
-                <li><button onclick="window.location.href='/'">Home</button></li>
+                <li>
+                    <button onclick="window.location.href='/'">Home</button>
+                </li>
             </div>
 
             <div class="middle-section"></div>
@@ -21,11 +23,14 @@
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
                         {% for fragebogen in frageboegen %}
-                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                            <li>
+                                <a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">
+                                    {{ fragebogen[1] }}
+                                </a>
+                            </li>
                         {% else %}
                             <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
                         {% endfor %}
-
                     </ul>
                 </li>
 
@@ -47,7 +52,6 @@
                 </li>
             </div>
         </ul>
-
 
         <main>
             <h1>{{ frageboegen.title }}</h1>
@@ -95,10 +99,14 @@
                     <button type="submit" class="button">Auswerten</button>
                 </div>
             </form>
-            
         </main>
 
-        <footer>Footer</footer>
+        <footer>
+
+        </footer>
+
     </div>
+
 </body>
+
 </html>

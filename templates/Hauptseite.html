@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
+    <title>Hauptseite</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='ModernAnfang.css') }}">
 </head>
 
@@ -13,7 +13,9 @@
 
         <ul>
             <div class="left-section">
-                <li><button onclick="window.location.href='/'">Home</button></li>
+                <li>
+                    <button onclick="window.location.href='/'">Home</button>
+                </li>
             </div>
 
             <div class="middle-section"></div>
@@ -23,11 +25,14 @@
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
                         {% for fragebogen in frageboegen %}
-                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                            <li>
+                                <a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">
+                                    {{ fragebogen[1] }}
+                                </a>
+                            </li>
                         {% else %}
                             <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
                         {% endfor %}
-
                     </ul>
                 </li>
 
@@ -51,41 +56,52 @@
         </ul>
 
         <main>
-    <h1>Nachhaltige Mode beginnt hier.</h1>
-    Du möchtest ein Mode-Startup gründen und dabei verantwortungsvoll mit Ressourcen umgehen? Unsere Plattform hilft dir, die besten nachhaltigen Rohstoffe zu finden – einfach, schnell und passend zu deinen Prioritäten.<br>
+            <h1>Nachhaltige Mode beginnt hier.</h1>
+            <p>
+                Du möchtest ein Mode-Startup gründen und dabei verantwortungsvoll mit Ressourcen umgehen? 
+                Unsere Plattform hilft dir, die besten nachhaltigen Rohstoffe zu finden – einfach, schnell und passend zu deinen Prioritäten.
+            </p>
 
-    <section>
-        <h2>Warum nachhaltige Rohstoffe wichtig sind</h2>
-        <br>
-        <p>
-        Rohstoffe machen einen großen Teil des ökologischen Fußabdrucks aus. Mit bewussten Entscheidungen legst du den Grundstein für umweltfreundliche Kollektionen, die nicht nur stilvoll, sondern auch zukunftsfähig sind.
-        </section>
+            <section>
+                <h2>Warum nachhaltige Rohstoffe wichtig sind</h2>
+                <br>
+                <p>
+                    Rohstoffe machen einen großen Teil des ökologischen Fußabdrucks aus. 
+                    Mit bewussten Entscheidungen legst du den Grundstein für umweltfreundliche Kollektionen, die nicht nur stilvoll, sondern auch zukunftsfähig sind.
+                </p>
+            </section>
 
-    <br>
+            <br>
 
-    <section>
-        <h2>Was wir bieten</h2>
-        <br>
-        <p>
-        Wir machen Nachhaltigkeit einfach: Mit unserer Plattform kannst du Rohstofflieferanten finden, die ökologische und soziale Standards einhalten. Passe deine Auswahl individuell an und entdecke innovative Materialien, die deinen Ansprüchen gerecht werden
-        </section>
+            <section>
+                <h2>Was wir bieten</h2>
+                <br>
+                <p>
+                    Wir machen Nachhaltigkeit einfach: Mit unserer Plattform kannst du Rohstofflieferanten finden, die ökologische und soziale Standards einhalten. 
+                    Passe deine Auswahl individuell an und entdecke innovative Materialien, die deinen Ansprüchen gerecht werden.
+                </p>
+            </section>
 
-    <section>
-        <h2>Starte jetzt mit den Fragebögen</h2>
-        <br>
-        <p>
-        Welche Prioritäten sind dir wichtig? Ob recycelte Stoffe, faire Produktion oder umweltfreundliche Verpackung – unser Fragebogen hilft dir, die richtigen Entscheidungen zu treffen.
-        </section>
+            <section>
+                <h2>Starte jetzt mit den Fragebögen</h2>
+                <br>
+                <p>
+                    Welche Prioritäten sind dir wichtig? Ob recycelte Stoffe, faire Produktion oder umweltfreundliche Verpackung – 
+                    unser Fragebogen hilft dir, die richtigen Entscheidungen zu treffen.
+                </p>
+            </section>
 
-    <div class="button-container">
-        <button onclick="window.location.href='/Fragebögen'">Starte den Fragebogen</button>
+            <div class="button-container">
+                <button onclick="window.location.href='/Fragebögen'">Starte den Fragebogen</button>
+            </div>
+        </main>
+
+        <footer>
+
+        </footer>
+
     </div>
-    
-</main>
 
-        <footer>Footer</footer>
-
-    </div>
 </body>
 
 </html>
