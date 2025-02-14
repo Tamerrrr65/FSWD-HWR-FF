@@ -8,79 +8,60 @@ nav_order: 2
 [Mert Giousouf, Tamer Abu Hweidi]
 
 {: .no_toc }
-# Data model
+# **Data Model**
 
 <details open markdown="block">
 {: .text-delta }
-<summary>Table of contents</summary>
-+ ToC
+<summary>Table of Contents</summary>
+
+- TOC
 {: toc }
 </details>
 
-1. nutzer
+## **1. Nutzer**
+Speichert die Nutzer mit:  
 
-Speichert die Nutzer mit:
+- `id` *(Primärschlüssel, eindeutige ID)*
+- `username` *(eindeutiger Benutzername)*
+- `password` *(gespeichertes Passwort)*
 
-- id (Primärschlüssel, eindeutige ID)
+---
 
-- username (eindeutiger Benutzername)
+## **2. Fragebögen**
+Speichert die Fragebögen mit:  
 
-- password (gespeichertes Passwort)
+- `id` *(Primärschlüssel)*
+- `titel` *(Name des Fragebogens)*
+- `beschreibung` *(optionale Beschreibung)*
 
+---
 
+## **3. Fragen**
+Speichert die Fragen eines Fragebogens mit:  
 
-2. frageboegen
+- `id` *(Primärschlüssel)*
+- `text` *(Fragentext)*
+- `fragen_art` *(Art der Frage, z. B. Ja/Nein oder Skala)*
+- `frageboegen_id` *(Fremdschlüssel → verbindet Frage mit einem Fragebogen)*
 
-Speichert Fragebögen mit:
+---
 
-- id (Primärschlüssel)
+## **4. Antworten**
+Speichert die Antworten der Nutzer mit:  
 
-- titel (Name des Fragebogens)
+- `id` *(Primärschlüssel)*
+- `nutzer_id` *(Fremdschlüssel → verweist auf Nutzer)*
+- `frageboegen_id` *(Fremdschlüssel → verweist auf Fragebogen)*
+- `fragen_id` *(Fremdschlüssel → verweist auf Frage)*
+- `antwort` *(die abgegebene Antwort)*
+- `erstellt_am` *(Zeitstempel der Antwort)*
 
-- beschreibung (optionale Beschreibung)
+---
 
+## **5. Auswertungen**
+Speichert die möglichen Auswertungen basierend auf der Antwort mit:  
 
-
-3. fragen
-
-Speichert die Fragen eines Fragebogens mit:
-
-- id (Primärschlüssel)
-
-- text (Fragentext)
-
-- fragen_art (Art der Frage, z. B. Ja/Nein oder Skala)
-
-- frageboegen_id (Fremdschlüssel → verbindet Frage mit einem Fragebogen)
-
-
-
-4. antworten
-
-Speichert Antworten von Nutzern mit:
-
-- id (Primärschlüssel)
-
-- nutzer_id (Fremdschlüssel → verweist auf Nutzer)
-
-- frageboegen_id (Fremdschlüssel → verweist auf Fragebogen)
-
-- fragen_id (Fremdschlüssel → verweist auf Frage)
-
-- antwort (die abgegebene Antwort)
-
-- erstellt_am (Zeitstempel der Antwort)
-
-
-
-5. auswertungen
-
-Speichert die möglichen Auswertungen basierend auf der Antwort mit:
-
-- id (Primärschlüssel)
-
-- fragen_id (Fremdschlüssel → verweist auf eine Frage)
-
-- auswahlmoeglichkeit (Antwortoption, die zu dieser Auswertung führt)
-
-- auswertungs_text (Text der Interpretation)
+- `id` *(Primärschlüssel)*
+- `fragen_id` *(Fremdschlüssel → verweist auf eine Frage)*
+- `auswahlmoeglichkeit` *(Antwortoption, die zu dieser Auswertung führt)*
+- `auswertungs_text` *(Text der Interpretation)*

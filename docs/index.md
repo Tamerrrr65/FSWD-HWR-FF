@@ -3,10 +3,6 @@ title: Home
 nav_order: 0
 ---
 
-{: .attention }
-> Any text enclosed by `[ ]` are placeholders, including the opening and closing brackets.
->
-> You may delete this `attention` box.
 
 # Mission Modepossible
 
@@ -21,7 +17,7 @@ About
 : Some info about Jane
 
 Matr.-Nr.
-: 1234567
+: 77211985250
 
 ### Tamer Abu Hweidi
 

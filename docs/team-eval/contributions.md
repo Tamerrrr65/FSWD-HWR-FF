@@ -17,16 +17,21 @@ nav_order: 4
 {: toc }
 </details>
 
-## [Jane Dane]
 
-Contributions
-: Lorem ipsum dolor
-: Consetetur sadipscing elitr
-: ...
+Wir entschieden uns dafpr die User-Evaluation zu entfernen, da wir als ein Team gearbeitet haben.
 
-## [Joe Doe]
+## **[Tamer Abu Hweidi]**
 
-Contributions
-: Diam nonumy eirmod
-: Tempor invidunt ut labore
-: ...
+### **Contributions**
+- Entwickeln des Designs
+- Erstellen des Fragebogens, der Fragen und der Auswertungen
+- Admin Panel
+
+---
+
+## **[Mert Giousouf]**
+
+### **Contributions**
+- Login und Registrierung
+- Integration des Fragebogens auf der Seite und die Speicherung der Ergebnisse
+- Erstellen des Fragebogens, der Fragen und der Auswertungen
