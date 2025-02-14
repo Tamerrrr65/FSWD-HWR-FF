@@ -498,57 +498,5 @@ def frage_loeschen(fragen_id):
 
     return redirect(url_for('admin_panel'))
 
-@app.route('/admin/fragen/<int:fragen_id>/bearbeiten', methods=['GET', 'POST'])
-def frage_bearbeiten(fragen_id):
-    if not session.get('admin_angemeldet'):
-        return redirect(url_for('admin_login'))
-
-    conn = sqlite3.connect('Datenbanken/frageboegen.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT id, text, fragen_art, frageboegen_id FROM fragen WHERE id = ?", (fragen_id,))
-    frage = cursor.fetchone()
-    conn.close()
-
-    if not frage:
-        return "Frage nicht gefunden", 404
-
-    fragebogen_id = frage[3]
-
-    conn = sqlite3.connect('Datenbanken/auswertungen.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT auswertungs_text, auswahlmoeglichkeit FROM auswertungen WHERE fragen_id = ?", (fragen_id,))
-    auswertungen = cursor.fetchall()
-    conn.close()
-
-    fragebogen_auswertungen = {fragen_id: auswertungen}
-
-    if request.method == 'POST':
-        neuer_text = request.form['text']
-        neue_fragen_art = request.form['fragen_art']
-
-        conn = sqlite3.connect('Datenbanken/frageboegen.db')
-        cursor = conn.cursor()
-        cursor.execute("UPDATE fragen SET text = ?, fragen_art = ? WHERE id = ?", (neuer_text, neue_fragen_art, fragen_id))
-        conn.commit()
-        conn.close()
-
-        conn = sqlite3.connect('Datenbanken/auswertungen.db')
-        cursor = conn.cursor()
-        for auswahlmoeglichkeit, _ in auswertungen:
-            neue_auswertung = request.form.get(f"evaluation_{auswahlmoeglichkeit}", "").strip()
-            if neue_auswertung:
-                cursor.execute("UPDATE auswertungen SET auswertungs_text = ? WHERE fragen_id = ? AND auswahlmoeglichkeit = ?", 
-                               (neue_auswertung, fragen_id, auswahlmoeglichkeit))
-        conn.commit()
-        conn.close()
-
-        return redirect(url_for('fragebogen_bearbeiten', fragebogen_id=fragebogen_id))
-
-    return render_template(
-        'FragenBearbeiten.html', 
-        frage=frage, 
-        fragebogen_auswertungen=fragebogen_auswertungen
-    )
-
 if __name__ == "__main__":
     app.run(debug=True)
