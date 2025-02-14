@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frage hinzufügen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Admin.css') }}">
+</head>
+
+<body>
+    <div class="container">
+
+        <ul>
+            <div class="left-section">
+                <li><button onclick="window.location.href='/'">Home</button></li>
+            </div>
+
+            <div class="middle-section"></div>
+
+            <div class="right-section">
+                
+                <li>
+                    <a href="#">Menü▾</a>
+                    <ul class="dropdown">
+                        {% if admin_checked %}
+                            <li><a href="/Abmelden">Abmelden</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </div>
+        </ul>
+
+        <div class="left-aside">
+            Linke Sidebar
+            <br>
+            <button onclick="window.location.href='/admin'">Zurück zum Admin</button>
+            <br>
+            <button onclick="window.location.href='/Abmelden'">Abmelden</button>
+        </div>
+
+        <main>
+            <h1>Füg eine neue Frage hinzu</h1>
+            <form action="/admin/Fragebögen/{{ fragebogen_id }}/hinzufuegen" method="post">
+                <label for="text">Fragen text:</label>
+                <input type="text" id="text" name="text" required>
+            
+                <label for="fragen_art">Art der Frage?</label>
+                <select id="fragen_art" name="fragen_art" required onchange="handleQuestionTypeChange()">
+                    <option value="">Wähl ein Fragentyp aus.</option>
+                    <option value="range">Skala</option>
+                    <option value="radio">Ja/Nein</option>
+                </select>
+            
+                <div id="evaluation_range_container" style="display: none;">
+                    <label>Skala auswertungen:</label>
+                    {% for i in range(1, 6) %}
+                    <input type="text" name="evaluation_range_{{ i }}" placeholder="Evaluation for {{ i }}">
+                    {% endfor %}
+                </div>
+            
+                <div id="evaluation_radio_container" style="display: none;">
+                    <label>Ja/Nein auswertungen:</label>
+                    <input type="text" name="evaluation_radio_1" placeholder="Auswertung für Ja">
+                    <input type="text" name="evaluation_radio_2" placeholder="Auswertung für Nein">
+                </div>
+                <br>
+                <button type="submit">Frage hinzufügen</button>
+            </form>
+            
+        </main>
+        <footer>Footer</footer>
+
+    </div>
+    <script>
+        function handleQuestionTypeChange() {
+            const questionType = document.getElementById('fragen_art').value;
+            const rangeContainer = document.getElementById('evaluation_range_container');
+            const radioContainer = document.getElementById('evaluation_radio_container');
+
+            rangeContainer.style.display = 'none';
+            radioContainer.style.display = 'none';
+            document.querySelectorAll('#evaluation_range_container input, #evaluation_radio_container input')
+                .forEach(input => input.required = false);
+        
+            if (questionType === 'range') {
+                rangeContainer.style.display = 'block';
+                document.querySelectorAll('#evaluation_range_container input').forEach(input => input.required = true);
+            } else if (questionType === 'radio') {
+                radioContainer.style.display = 'block';
+                document.querySelectorAll('#evaluation_radio_container input').forEach(input => input.required = true);
+            }
+        }
+        </script>
+</body>
+
+</html>

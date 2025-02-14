@@ -203,6 +203,7 @@ a:hover {
 .button-container {
     display: flex;
     justify-content: center;
+    
     margin-top: 20px;
 }
 
@@ -214,6 +215,10 @@ button {
     border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
     transition: background 0.3s, transform 0.2s ease-in-out;
 }
 

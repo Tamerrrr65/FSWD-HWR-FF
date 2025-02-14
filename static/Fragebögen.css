@@ -226,10 +226,6 @@ button:hover {
     grid-area: header;
 }
 
-.fragenbogen-liste {
-
-}
-
 .fragenbogen-liste ul {
     height: 100px;
     width: 100%;

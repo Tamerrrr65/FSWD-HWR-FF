@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Webseite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Admin.css') }}">
+</head>
+
+<body>
+    <div class="container">
+
+        <ul>
+            <div class="left-section">
+            </div>
+
+            <div class="middle-section"></div>
+
+            <div class="right-section">
+                
+                <li>
+                    <a href="#">Menü▾</a>
+                    <ul class="dropdown">
+                        {% if admin_checked %}
+                            <li><a href="/Abmelden">Abmelden</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </div>
+        </ul>
+
+        <div class="left-aside">
+            Linke Sidebar
+            <br>
+            <button onclick="window.location.href='/Abmelden'">Abmelden</button>
+        </div>
+
+        <main>
+
+            <h1>Fragebögen</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Titel</th>
+                        <th>Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fragebogen in frageboegen %}
+                    <tr>
+                        <td>{{ fragebogen[0] }}</td>
+                        <td>{{ fragebogen[1] }}</td>
+
+                        <td>
+                            <a href="/admin/Fragebögen/{{ fragebogen[0] }}">
+                                <button>Fragebogen betrachten</button>
+                            </a>
+
+                            <form action="/admin/fragebogen/{{ fragebogen[0] }}/delete" method="POST" style="display:inline;">
+                                <button type="submit" onclick="return confirm('Bist du sicher, dass du diesen Fragebogen löschen möchtest?');">
+                                    Löschen
+                                </button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="/admin/FragebogenHinzufuegen">
+                <button style="margin-bottom: 20px;">Neuen Fragebogen erstellen</button>
+            </a>
+
+        </main>
+
+        <footer></footer>
+
+    </div>
+
+</body>
+
+</html>

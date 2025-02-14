@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuen Fragebogen erstellen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='FragebogenHinzufuegen.css') }}">
+</head>
+<body>
+    <header>Neuen Fragebogen erstellen</header>
+    <main>
+        <div class="container">
+            <form method="POST">
+                <label for="titel">Titel:</label>
+                <input type="text" id="titel" name="titel" placeholder="Titel eingeben..." required>
+
+                <label for="beschreibung">Beschreibung:</label>
+                <textarea id="beschreibung" name="beschreibung" placeholder="Beschreibe den Fragebogen..." rows="4"></textarea>
+
+                <div class="button-container">
+                    <a href="/admin"><button type="button" class="btn-secondary">Zurück</button></a>
+
+                    <button type="submit">Speichern</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

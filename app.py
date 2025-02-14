@@ -33,6 +33,10 @@ def Anmelden():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+
+        if username == 'admin' and password == '123':
+            session['admin_angemeldet'] = True
+            return redirect(url_for('admin_panel'))
      
         conn = sqlite3.connect('Datenbanken/nutzer.db')
         cursor = conn.cursor()
@@ -320,24 +324,231 @@ def Profil():
         return render_template('Profil.html', Angemeldet=True, username=session.get('username'), frageboegen=frageboegen)
     return render_template('Profil.html', Angemeldet=False, frageboegen=frageboegen)
 
-@app.route('/Profil/Update', methods=['POST'])
-def Profil_Update():
-    if 'Angemeldet' in session:
-        username = request.form['username']
-        old_password = request.form['old-password']
-        new_password = request.form['new-password']
 
-        conn = sqlite3.connect('Datenbanken/nutzer.db')
+@app.route('/admin')
+def admin_panel():
+    if not session.get('admin_angemeldet'):
+        session.pop('admin_angemeldet', None)
+        session.pop('Angemeldet', None)
+        session.pop('username', None)
+        return redirect(url_for('Anmelden'))
+
+    frageboegen = get_frageboegen()
+    return render_template('AdminPanel.html', frageboegen=frageboegen, admin_checked=True)
+
+@app.route('/admin/Fragebögen/<int:fragebogen_id>')
+def fragebogen_bearbeiten(fragebogen_id):
+    if not session.get('admin_angemeldet'):
+        return redirect(url_for('admin_login'))
+
+    conn = sqlite3.connect('Datenbanken/frageboegen.db')
+    cursor = conn.cursor()
+
+    cursor.execute('''
+        SELECT q.id, q.text, q.fragen_art
+        FROM fragen q
+        WHERE q.frageboegen_id = ?
+    ''', (fragebogen_id,))
+    fragen = cursor.fetchall()
+
+    conn.close()
+
+
+    conn = sqlite3.connect('Datenbanken/auswertungen.db')
+    cursor = conn.cursor()
+
+    fragebogen_auswertungen = {}
+    for fragen_id, text, fragen_art in fragen:
+        cursor.execute('''
+            SELECT auswertungs_text, auswahlmoeglichkeit
+            FROM auswertungen
+            WHERE fragen_id = ?
+            ORDER BY auswahlmoeglichkeit
+        ''', (fragen_id,))
+        auswertungen = cursor.fetchall()
+        fragebogen_auswertungen[fragen_id] = auswertungen
+
+
+    conn.close()
+
+    return render_template(
+        'FragebogenBearbeiten.html',
+        fragen=fragen, 
+        fragebogen_auswertungen=fragebogen_auswertungen, 
+        fragebogen_id=fragebogen_id, 
+        admin_checked=True
+    )
+
+@app.route('/admin/FragebogenHinzufuegen', methods=['GET', 'POST'])
+def FragebogenHinzufuegen():
+    if not session.get('admin_angemeldet'):
+        return redirect(url_for('Anmelden'))
+
+    if request.method == 'POST':
+        titel = request.form['titel']
+        beschreibung = request.form['beschreibung']
+
+        conn = sqlite3.connect('Datenbanken/frageboegen.db')
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO frageboegen (titel, beschreibung) VALUES (?, ?)', (titel, beschreibung))
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('admin_panel'))
+
+    return render_template('FragebogenHinzufuegen.html')
+
+@app.route('/admin/fragebogen/<int:fragebogen_id>/delete', methods=['POST'])
+def fragebogen_loeschen(fragebogen_id):
+    if not session.get('admin_angemeldet'):
+        return redirect(url_for('Anmelden'))
+
+    try:
+        conn = sqlite3.connect('Datenbanken/frageboegen.db')
         cursor = conn.cursor()
 
-        cursor.execute('SELECT password FROM nutzer WHERE username = ?', (session['username'],))
-        result = cursor.fetchone()
-        if not result or not check_password_hash(result[0], old_password):
-            conn.close()
-            return render_template('Profil.html', Angemeldet=True, username=session.get('username'), error="Falsches Passwort")
-        
-        return redirect(url_for('Profil'))
-    return render_template('Profil.html', Angemeldet=False)
+        cursor.execute('DELETE FROM frageboegen WHERE id = ?', (fragebogen_id,))
+        conn.commit()
+        conn.close()
+    except sqlite3.Error as e:
+        print(f"Fehler beim Löschen des Fragebogens: {e}")
+
+    return redirect(url_for('admin_panel'))
+
+@app.route('/admin/Fragebögen/<int:fragebogen_id>/hinzufuegen', methods=['GET', 'POST'])
+def frage_hinzufuegen(fragebogen_id):
+    if not session.get('admin_angemeldet'):
+        return redirect(url_for('admin_angemeldet'))
+    
+    if request.method == 'POST':
+        text = request.form['text']
+        fragen_art = request.form['fragen_art']
+
+        conn = sqlite3.connect('Datenbanken/frageboegen.db')
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO fragen (text, fragen_art, frageboegen_id)
+            VALUES (?, ?, ?)
+        ''', (text, fragen_art, fragebogen_id))
+        fragen_id = cursor.lastrowid
+
+        conn.commit()
+        conn.close()
+
+        conn = sqlite3.connect('Datenbanken/auswertungen.db')
+        cursor = conn.cursor()
+
+        if fragen_art  == 'range':
+            for i in range(1, 6):
+                auswertungs_text = request.form.get(f'evaluation_range_{i}')
+                cursor.execute('''
+                    INSERT INTO auswertungen  (fragen_id, auswertungs_text, auswahlmoeglichkeit)
+                    VALUES (?, ?, ?)
+                ''', (fragen_id, auswertungs_text, i))
+        else:
+            for i in range(1, 3):
+                auswertungs_text = request.form.get(f'evaluation_radio_{i}')
+                cursor.execute('''
+                    INSERT INTO auswertungen  (fragen_id, auswertungs_text, auswahlmoeglichkeit)
+                    VALUES (?, ?, ?)
+                ''', (fragen_id, auswertungs_text, i))
+
+        conn.commit()
+        conn.close()
+        return redirect('/admin')
+    
+    return render_template('FragenHinzufuegen.html', fragebogen_id=fragebogen_id, frageboegen = get_frageboegen())
+
+@app.route('/admin/fragen/<int:fragen_id>/loeschen')
+def frage_loeschen(fragen_id):
+    if not session.get('admin_angemeldet'):
+        return redirect(url_for('admin_login'))
+
+    try:
+        connection = sqlite3.connect('Datenbanken/auswertungen.db')
+        cursor = connection.cursor()
+
+        cursor.execute('DELETE FROM auswertungen WHERE fragen_id = ?', (fragen_id,))
+        connection.commit()
+        connection.close()
+
+        connection_two = sqlite3.connect('Datenbanken/frageboegen.db')
+        cursor_two = connection_two.cursor()
+
+        cursor_two.execute('SELECT frageboegen_id FROM fragen WHERE id = ?', (fragen_id,))
+        fragebogen = cursor_two.fetchone()
+
+        if fragebogen:
+            fragebogen_id = fragebogen[0]
+
+            cursor_two.execute('DELETE FROM fragen WHERE id = ?', (fragen_id,))
+            connection_two.commit()
+            connection_two.close()
+
+            return redirect(url_for('fragebogen_bearbeiten', fragebogen_id=fragebogen_id))
+
+    except sqlite3.Error as e:
+        connection.rollback()
+        print(f"Fehler beim Löschen der Frage: {e}")
+    finally:
+        if connection:
+            connection.close()
+        if connection_two:
+            connection_two.close()
+
+    return redirect(url_for('admin_panel'))
+
+@app.route('/admin/fragen/<int:fragen_id>/bearbeiten', methods=['GET', 'POST'])
+def frage_bearbeiten(fragen_id):
+    if not session.get('admin_angemeldet'):
+        return redirect(url_for('admin_login'))
+
+    conn = sqlite3.connect('Datenbanken/frageboegen.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, text, fragen_art, frageboegen_id FROM fragen WHERE id = ?", (fragen_id,))
+    frage = cursor.fetchone()
+    conn.close()
+
+    if not frage:
+        return "Frage nicht gefunden", 404
+
+    fragebogen_id = frage[3]
+
+    conn = sqlite3.connect('Datenbanken/auswertungen.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT auswertungs_text, auswahlmoeglichkeit FROM auswertungen WHERE fragen_id = ?", (fragen_id,))
+    auswertungen = cursor.fetchall()
+    conn.close()
+
+    fragebogen_auswertungen = {fragen_id: auswertungen}
+
+    if request.method == 'POST':
+        neuer_text = request.form['text']
+        neue_fragen_art = request.form['fragen_art']
+
+        conn = sqlite3.connect('Datenbanken/frageboegen.db')
+        cursor = conn.cursor()
+        cursor.execute("UPDATE fragen SET text = ?, fragen_art = ? WHERE id = ?", (neuer_text, neue_fragen_art, fragen_id))
+        conn.commit()
+        conn.close()
+
+        conn = sqlite3.connect('Datenbanken/auswertungen.db')
+        cursor = conn.cursor()
+        for auswahlmoeglichkeit, _ in auswertungen:
+            neue_auswertung = request.form.get(f"evaluation_{auswahlmoeglichkeit}", "").strip()
+            if neue_auswertung:
+                cursor.execute("UPDATE auswertungen SET auswertungs_text = ? WHERE fragen_id = ? AND auswahlmoeglichkeit = ?", 
+                               (neue_auswertung, fragen_id, auswahlmoeglichkeit))
+        conn.commit()
+        conn.close()
+
+        return redirect(url_for('fragebogen_bearbeiten', fragebogen_id=fragebogen_id))
+
+    return render_template(
+        'FragenBearbeiten.html', 
+        frage=frage, 
+        fragebogen_auswertungen=fragebogen_auswertungen
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
