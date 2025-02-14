@@ -5,17 +5,10 @@ nav_order: 3
 ---
 
 {: .label }
-[Jane Dane]
+[Mert Giousouf, Tamer Abu Hweidi]
 
 {: .no_toc }
 # Reference documentation
-
-{: .attention }
-> This page collects internal functions, routes with their functions, and APIs (if any).
-> 
-> See [Uber](https://developer.uber.com/docs/drivers/references/api) or [PayPal](https://developer.paypal.com/api/rest/) for exemplary high-quality API reference documentation.
->
-> You may delete this `attention` box.
 
 <details open markdown="block">
 {: .text-delta }
@@ -26,60 +19,102 @@ nav_order: 3
 
 ## [Section / module]
 
-### `function_definition()`
+### `Home()`
+**Route:** `/`  
+**Methods:** `GET`  
+**Purpose:** Lädt die Hauptseite und zeigt verfügbare Fragebögen an. Prüft, ob der Nutzer angemeldet ist.  
 
-**Route:** `/route/`
+### `Nachhaltigkeit()`
+**Route:** `/Nachhaltigkeit`  
+**Methods:** `GET`  
+**Purpose:** Zeigt die Nachhaltigkeitsseite mit Fragebögen an.  
 
-**Methods:** `POST` `GET` `PATCH` `PUT` `DELETE`
+### `Anmelden()`
+**Route:** `/Anmelden`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Erlaubt Nutzern die Anmeldung. Prüft Login-Daten und speichert die Sitzung.  
 
-**Purpose:** [Short explanation of what the function does and why]
+### `Registrieren()`
+**Route:** `/Registrieren`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Ermöglicht neuen Nutzern die Registrierung mit Passwort-Verschlüsselung.  
 
-**Sample output:**
+### `Empfehlungen()`
+**Route:** `/Empfehlungen`  
+**Methods:** `GET`  
+**Purpose:** Zeigt eine Seite mit Empfehlungen an.  
 
-[Show an image, string output, or similar illustration -- or write NONE if function generates no output]
+### `Gesetze()`
+**Route:** `/Gesetze`  
+**Methods:** `GET`  
+**Purpose:** Lädt eine Informationsseite zu Gesetzen.  
 
----
+### `Abmelden()`
+**Route:** `/Abmelden`  
+**Methods:** `GET`  
+**Purpose:** Beendet die Sitzung und leitet zur Startseite weiter.  
 
-## [Example, delete this section] Show to-do lists
+### `Gesichert()`
+**Route:** `/Gesichert`  
+**Methods:** `GET`  
+**Purpose:** Geschützte Seite, die nur angemeldete Nutzer sehen können.  
 
-### `get_lists()`
+### `Fragebögen()`
+**Route:** `/Fragebögen`  
+**Methods:** `GET`  
+**Purpose:** Listet alle verfügbaren Fragebögen auf.  
 
-**Route:** `/lists/`
+### `show_fragebogen()`
+**Route:** `/Fragebögen/<int:fragebogen_id>`  
+**Methods:** `GET`  
+**Purpose:** Zeigt einen spezifischen Fragebogen mit Fragen an.  
 
-**Methods:** `GET`
+### `submit_fragebogen()`
+**Route:** `/submit_fragebogen`  
+**Methods:** `POST`  
+**Purpose:** Speichert die Antworten eines Nutzers und wertet sie aus.  
 
-**Purpose:** Show all to-do lists.
+### `beantworteter_fragebogen_loeschen()`
+**Route:** `/beantworteter_fragebogen_loeschen`  
+**Methods:** `POST`  
+**Purpose:** Löscht die gespeicherten Antworten eines Nutzers zu einem Fragebogen.  
 
-**Sample output:**
+### `Ergebnisse()`
+**Route:** `/Ergebnisse`  
+**Methods:** `GET`  
+**Purpose:** Zeigt die gespeicherten Antworten und Auswertungen eines Nutzers an.  
 
-![get_lists() sample](../assets/images/fswd-intro_00.png)
+### `Profil()`
+**Route:** `/Profil`  
+**Methods:** `GET`  
+**Purpose:** Zeigt das Nutzerprofil mit persönlichen Fragebögen an.  
 
----
+### `admin_panel()`
+**Route:** `/admin`  
+**Methods:** `GET`  
+**Purpose:** Öffnet das Admin-Panel zur Verwaltung von Fragebögen.  
 
-### `get_list_todos(list_id)`
+### `fragebogen_bearbeiten()`
+**Route:** `/admin/Fragebögen/<int:fragebogen_id>`  
+**Methods:** `GET`  
+**Purpose:** Zeigt Fragen und Auswertungen eines Fragebogens an, um sie zu bearbeiten.  
 
-**Route:** `/lists/<int:list_id>`
+### `FragebogenHinzufuegen()`
+**Route:** `/admin/FragebogenHinzufuegen`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Erlaubt Admins, neue Fragebögen hinzuzufügen.  
 
-**Methods:** `GET`
+### `fragebogen_loeschen()`
+**Route:** `/admin/fragebogen/<int:fragebogen_id>/delete`  
+**Methods:** `POST`  
+**Purpose:** Löscht einen Fragebogen aus der Datenbank.  
 
-**Purpose:** Retrieve all to-do items of to-do list with ID `list_id` from database and present to user.
+### `frage_hinzufuegen()`
+**Route:** `/admin/Fragebögen/<int:fragebogen_id>/hinzufuegen`  
+**Methods:** `GET`, `POST`  
+**Purpose:** Fügt einer bestehenden Umfrage neue Fragen hinzu.  
 
-**Sample output:**
-
-![get_list_todos() sample](../assets/images/fswd-intro_02.png)
-
----
-
-## [Example, delete this section] Insert sample data
-
-### `run_insert_sample()`
-
-**Route:** `/insert/sample`
-
-**Methods:** `GET`
-
-**Purpose:** Flush the database and insert sample data set
-
-**Sample output:**
-
-Browser shows: `Database flushed and populated with some sample data.`
+### `frage_loeschen()`
+**Route:** `/admin/fragen/<int:fragen_id>/loeschen`  
+**Methods:** `GET`  
+**Purpose:** Löscht eine einzelne Frage aus einem Fragebogen.

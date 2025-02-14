@@ -14,21 +14,26 @@ nav_order: 1
 </details>
 
 ## The problem
+Viele kleine und mittelständische Unternehmen (KMUs) in der Modebranche stehen vor der Herausforderung, nachhaltigere Rohstoffe zu beschaffen, um den wachsenden Erwartungen von Konsumenten sowie den steigenden regulatorischen Anforderungen im Bereich Umwelt (E in ESG) gerecht zu werden.
 
-Viele kleine und mittelständische Unternehmen (KMUs) in der Modebranche stehen vor der Herausforderung, nachhaltigere Rohstoffe zu beschaffen, um die steigenden Anforderungen von Konsumenten und Regulierungen im Bereich Umwelt (E in ESG) zu erfüllen. Es fehlt jedoch häufig an Know-how, Ressourcen und Transparenz entlang der Lieferkette. Nachhaltige Alternativen sind schwer zugänglich, teurer oder intransparent hinsichtlich ihrer Umweltbilanz.
+Allerdings fehlt es diesen Unternehmen häufig an fundiertem Wissen, ausreichenden Ressourcen und der notwendigen Transparenz entlang der Lieferkette. Nachhaltige Alternativen sind oft schwer zugänglich, mit höheren Kosten verbunden oder unzureichend in Bezug auf ihre tatsächliche Umweltbilanz nachvollziehbar. Dies erschwert es KMUs erheblich, nachhaltige Geschäftsentscheidungen zu treffen und ihre Prozesse entsprechend zu optimieren.
 
 ## Our solution
 
-Unsere Plattform bietet KMUs in der Modebranche eine einfache und effektive Möglichkeit, ihre Rohstoffbeschaffung nachhaltiger zu gestalten. Sie vereint Informationen, Empfehlungen und praktische Werkzeuge an einem Ort, um Unternehmen eine klare Orientierung zu geben. Über eine intuitive Benutzeroberfläche können Nutzer nachhaltige Rohstoffe und zertifizierte Lieferanten entdecken, die für ihre Bedürfnisse geeignet sind.
+Unsere Plattform bietet kleinen und mittelständischen Unternehmen (KMUs) in der Modebranche eine benutzerfreundliche und effektive Möglichkeit, ihre Rohstoffbeschaffung nachhaltiger zu gestalten. Sie kombiniert fundierte Informationen, konkrete Handlungsempfehlungen und praktische Werkzeuge an einem zentralen Ort, um Unternehmen eine klare Orientierung zu ermöglichen.
+
+Über eine intuitive Benutzeroberfläche erhalten Nutzer Zugang zu nachhaltigen Rohstoffen und zertifizierten Lieferanten, die ihren spezifischen Anforderungen entsprechen. Dadurch wird nicht nur der Beschaffungsprozess transparenter und effizienter, sondern auch die Umsetzung nachhaltiger Praktiken erleichtert.
 
 ## Target user
 
-Primäre Zielgruppe: Junge Mode-Startups und kleine Modehersteller, die nachhaltige Materialien
-beschaffen und ihre Lieferkette ESG-konform gestalten möchten.
+Primäre Zielgruppe: Unsere Hauptzielgruppe umfasst junge Mode-Startups sowie kleine Modehersteller, die nachhaltige Materialien in ihre Produktion integrieren und ihre Lieferkette im Einklang mit ESG-Kriterien gestalten möchten. Diese Unternehmen stehen oft vor der Herausforderung, geeignete nachhaltige Rohstoffe zu finden und transparente, umweltfreundliche Beschaffungsprozesse zu etablieren.
 
-Sekundäre Zielgruppe: Berater, Verbände und Lieferanten, die Modeunternehmen bei der Implementierung nachhaltiger Praktiken unterstützen.
+Sekundäre Zielgruppe: Zusätzlich richtet sich unsere Plattform an Berater, Branchenverbände und Lieferanten, die Modeunternehmen bei der Implementierung nachhaltiger Praktiken unterstützen. Diese Akteure profitieren von fundierten Informationen, Markttransparenz und Vernetzungsmöglichkeiten, um ihre eigenen Dienstleistungen und Angebote gezielt an nachhaltigkeitsorientierte Unternehmen anzupassen.
 
 ## Customer journey
 
-Die Reise eines typischen Nutzers auf unserer Plattform beginnt mit dem Eintritt über eine Google-Suche, beispielsweise nach „nachhaltige Stoffe Mode“, oder durch eine direkte Empfehlung aus dem Netzwerk. Nach dem ersten Klick wird der Nutzer auf der Startseite begrüßt und eingeladen, an einem interaktiven Fragebogen teilzunehmen.
-Nach dem ausfüllen des Fragebogens, wird dem Nutzer erklärt, wie nachhaltig er ist und wie es sich verbessern kann.
+Die Reise eines typischen Nutzers auf unserer Plattform beginnt mit der gezielten Suche nach nachhaltigen Materialien – entweder über Suchmaschinen mit Begriffen wie „nachhaltige Stoffe Mode“ oder durch eine direkte Empfehlung aus dem eigenen Netzwerk.
+
+Nach dem ersten Klick auf unsere Website wird der Nutzer auf der Startseite empfangen und dazu eingeladen, an einem interaktiven Fragebogen teilzunehmen. Dieser erfasst den aktuellen Stand der Nachhaltigkeitspraktiken des Unternehmens und ermöglicht eine erste individuelle Analyse.
+
+Nach Abschluss des Fragebogens erhält der Nutzer eine detaillierte Einschätzung zu seinem aktuellen Nachhaltigkeitsniveau. Basierend auf den Antworten werden gezielte Verbesserungsvorschläge präsentiert, die konkrete Maßnahmen zur Optimierung der Rohstoffbeschaffung und der Lieferkette enthalten. Dadurch erhält der Nutzer nicht nur wertvolle Handlungsempfehlungen, sondern auch direkte Anknüpfungspunkte für eine nachhaltigere Geschäftsstrategie.

@@ -16,77 +16,109 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: [Design]
 
 ### Meta
 
 Status
-: **Work in progress** - Decided - Obsolete
+: **Work is done**
 
 Updated
-: DD-MMM-YYYY
+: 14-02-2025
 
-### Problem statement
+- **Problemstellung:**  
 
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
+  Ein ansprechendes Design und eine gut strukturierte Benutzeroberfläche sind essenziell, um die Verweildauer der Nutzer auf der Webseite zu erhöhen und eine intuitive Nutzung zu ermöglichen.
 
-### Decision
 
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
+- **Entscheidung:**  
 
-### Regarded options
-
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
+  Die erste Designentscheidung wurde von Tamer getroffen, da er zu Beginn über größere Grundkenntnisse in HTML verfügte. Das Layout entwickelte sich schrittweise weiter – von einem einfachen Grundlayout über ein Comic-Design bis hin zur finalen Version. Das Endprodukt wurde durch kontinuierliche Abstimmung und iterative Verbesserungen gemeinsam festgelegt.
 
 ---
 
-## [Example, delete this section] 01: How to access the database - SQL or SQLAlchemy 
+## 02: [Login]
 
 ### Meta
 
 Status
-: Work in progress - **Decided** - Obsolete
+: **Work is done**
 
 Updated
-: 30-Jun-2024
+: 14-02-2025
 
-### Problem statement
+- **Problemstellung:** 
 
-Should we perform database CRUD (create, read, update, delete) operations by writing plain SQL or by using SQLAlchemy as object-relational mapper?
-
-Our web application is written in Python with Flask and connects to an SQLite database. To complete the current project, this setup is sufficient.
-
-We intend to scale up the application later on, since we see substantial business value in it.
+  Eine Anmeldefunktion war erforderlich, um sicherzustellen, dass die ausgefüllten Fragebögen für die jeweiligen Nutzer gespeichert werden können und eine individuelle Nachverfolgung der Ergebnisse möglich ist.
 
 
+- **Entscheidung:**  
 
-Therefore, we will likely:
-Therefore, we will likely:
-Therefore, we will likely:
+  Die Implementierung des Logins wurde von Mert übernommen. Dabei orientierte er sich an den Erklärungen von Herrn Eck und setzte die Authentifizierung mithilfe von SQLite um.
 
-+ Change the database schema multiple times along the way, and
-+ Switch to a more capable database system at some point.
+---
 
-### Decision
+## 02: [Fragebögen, Fragen und Auswertung]
 
-We stick with plain SQL.
+### Meta
 
-Our team still has to come to grips with various technologies new to us, like Python and CSS. Adding another element to our stack will slow us down at the moment.
+Status
+: **Work is done**
 
-Also, it is likely we will completely re-write the app after MVP validation. This will create the opportunity to revise tech choices in roughly 4-6 months from now.
-*Decision was taken by:* github.com/joe, github.com/jane, github.com/maxi
+Updated
+: 14-02-2025
 
-### Regarded options
+- **Problemstellung:**  
 
-We regarded two alternative options:
+  Es war notwendig, mehrere kleinere Fragebögen mit entsprechenden Fragen und Auswertungen zu erstellen, um sie sinnvoll in die Webseite zu integrieren.
 
-+ Plain SQL
-+ SQLAlchemy
 
-| Criterion | Plain SQL | SQLAlchemy |
-| --- | --- | --- |
-| **Know-how** | ✔️ We know how to write SQL | ❌ We must learn ORM concept & SQLAlchemy |
-| **Change DB schema** | ❌ SQL scattered across code | ❔ Good: classes, bad: need Alembic on top |
-| **Switch DB engine** | ❌ Different SQL dialect | ✔️ Abstracts away DB engine |
+- **Entscheidung:**  
+
+  Die Erstellung der Fragebögen wurde hauptsächlich von Tamer übernommen, jedoch mit Unterstützung von Mert. Durch gemeinsame Fragerunden konnten die ersten zehn Fragebögen mit jeweils fünf Fragen finalisiert werden.  
+  
+  Die Fragen sind entweder als Ja/Nein-Fragen oder über eine Skala von 1 bis 5 beantwortbar. Jede der fünf Skalenwerte hat eine eigene, individuell definierte Auswertung. Ursprünglich gab es die Überlegung, die Skalenwerte zu summieren und auf Basis der Gesamtpunktzahl eine umfassendere Analyse zu erstellen. Allerdings erwies sich diese Methode als komplexer als zunächst angenommen, weshalb letztlich eine einfachere Lösung gewählt wurde.
+
+---
+
+## 04: [Beantworten der Fragebögen]
+
+### Meta
+
+Status
+: **Work is done**
+
+Updated
+: 14-02-2025
+
+- **Problemstellung:**  
+
+  Nutzer müssen die Möglichkeit haben, die Fragebögen direkt auf der Webseite auszufüllen und ihre Antworten zu speichern.
+
+- **Entscheidung:**  
+
+  Die Implementierung dieses Features wurde hauptsächlich von Mert übernommen, da Tamer zu diesem Zeitpunkt mit anderen Projekten beschäftigt war. Ursprünglich war geplant, die ausgefüllten Fragebögen im Nutzerprofil zu speichern. Allerdings wurde später entschieden, diese stattdessen auf einer separaten Seite abzulegen, da die Fragebögen beliebig oft ausgefüllt werden können. Dies führte jedoch dazu, dass die Übersichtlichkeit mit der Zeit nachließ. Um dem entgegenzuwirken, wurde mit Unterstützung von Tamer eine Funktion ergänzt, die es ermöglicht, gespeicherte Fragebögen über einen zusätzlichen Button zu löschen, falls sie fehlerhaft oder nicht relevant sind.
+
+---
+
+## 05: [Admin-Panel]
+
+### Meta
+
+Status
+: **Work is done**
+
+Updated
+: 14-02-2025
+
+- **Problemstellung:**  
+
+  Das manuelle Hinzufügen neuer Fragen oder Fragebögen durch das Erstellen einer neuen Datenbank und das Ersetzen der alten Version erwies sich als unpraktisch. Daher wurde eine Lösung benötigt, die es Administratoren ermöglicht, Fragebögen direkt über die Benutzeroberfläche zu verwalten.
+
+
+- **Entscheidung:**  
+
+  Zur effizienten Verwaltung der Inhalte wurde ein Admin-Account eingeführt. Über diesen können Fragebögen hinzugefügt, gelöscht und bearbeitet werden.  
+  Beim Bearbeiten eines Fragebogens besteht die Möglichkeit, neue Fragen hinzuzufügen oder bestehende zu entfernen. Ursprünglich war geplant, eine Funktion zu integrieren, die es erlaubt, einzelne Fragen direkt zu bearbeiten, anstatt sie zu löschen und neu zu erstellen. Allerdings traten dabei wiederholt Fehlermeldungen auf, weshalb diese Funktion letztlich entfernt wurde.
 
 ---

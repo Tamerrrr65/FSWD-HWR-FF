@@ -5,24 +5,10 @@ nav_order: 1
 ---
 
 {: .label }
-[Jane Dane]
+[Mert Giousouf, Tamer Abu Hweidi]
 
 {: .no_toc }
 # Architecture
-
-{: .attention }
-> This page describes how the application is structured and how important parts of the app work. It should give a new-joiner sufficient technical knowledge for contributing to the codebase.
-> 
-> See [this blog post](https://matklad.github.io/2021/02/06/ARCHITECTURE.md.html) for an explanation of the concept and these examples:
->
-> + <https://github.com/rust-lang/rust-analyzer/blob/master/docs/dev/architecture.md>
-> + <https://github.com/Uriopass/Egregoria/blob/master/ARCHITECTURE.md>
-> + <https://github.com/davish/obsidian-full-calendar/blob/main/src/README.md>
-> 
-> For structural and behavioral illustration, you might want to leverage [Mermaid](../ui-components.md), e.g., by charting common [C4](https://c4model.com/) or [UML](https://www.omg.org/spec/UML) diagrams.
-> 
->
-> You may delete this `attention` box.
 
 <details open markdown="block">
 {: .text-delta }
@@ -33,12 +19,35 @@ nav_order: 1
 
 ## Overview
 
-[Give a high-level overview of what your app does and how it achieves it: similar to the value proposition, but targeted at a fellow developer who wishes to contribute.]
+Unsere Plattform ist eine webbasierte Anwendung, die Mode-Startups und kleine Modehersteller dabei unterstützt, nachhaltige Rohstoffbeschaffung und ESG-konforme Lieferketten zu optimieren. Durch interaktive Fragebögen, eine datengetriebene Evaluationslogik und eine intuitive Benutzeroberfläche bietet die Anwendung fundierte Handlungsempfehlungen und erleichtert den Zugang zu nachhaltigen Materialien sowie zertifizierten Lieferanten.
+
+Technologisch basiert die Plattform auf einem modularen, skalierbaren Architekturansatz, der es Entwicklern ermöglicht, effizient neue Funktionen hinzuzufügen oder bestehende Komponenten zu optimieren. Die Kernfunktionen umfassen:
+
+1. Interaktive Fragebögen zur Ermittlung des Nachhaltigkeitsstatus
+2. Einfaches Empfehlungssystem für nachhaltige Materialien und Lieferanten
+4. Eine benutzerfreundliche Web-Oberfläche für eine intuitive Navigation
+
+Die Anwendung ist so konzipiert, dass sie leicht erweiterbar ist, um zukünftige Anforderungen an Nachhaltigkeitsstandards, neue Regulierungen oder sich wandelnde Bedürfnisse der Modebranche zu integrieren.
 
 ## Codemap
 
-[Describe how your app is structured. Don't aim for completeness, rather describe *just* the most important parts.]
+Unsere Anwendung folgt einer modularen Architektur, die eine klare Trennung zwischen Frontend, Backend und Datenbank gewährleistet. Dies ermöglicht eine flexible Weiterentwicklung und einfache Wartung.
 
-## Cross-cutting concerns
+Frontend
+1. Besteht aus HTML und CSS für das grundlegende Design und die Benutzeroberfläche.
+2. Enthält interaktive Formulare für die Fragebögen sowie Ergebnisdarstellungen.
+3. Zielt auf eine intuitive und responsive Nutzung ab.
 
-[Describe anything that is important for a solid understanding of your codebase. Most likely, you want to explain the behavior of (parts of) your application. In this section, you may also link to important [design decisions](../design-decisions.md).]
+Backend
+1. Entwickelt mit Python und Flask für die serverseitige Logik.
+2. Verantwortlich für die Verarbeitung der Fragebögen
+3. Enthält eine API-Schicht, die mit dem Frontend kommuniziert.
+
+Datenbank
+1. SQLite als relationale Datenbank, da dies für die initiale Entwicklung einfach und effizient war.
+2. Speichert Nutzerantworten, Fragebögen, Fragen und die Auswertungen.
+
+Admin Panel
+1. Ermöglicht die Verwaltung von Fragebögen, Fragen und deren Inhalten.
+2. Nutzt eine eigene API-Schicht für administrative Funktionen.
+
