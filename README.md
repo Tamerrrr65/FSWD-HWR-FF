@@ -7,6 +7,7 @@ Hier wird man nachhaltiger.
 2. "Python: Select Interpreter" auswählen. Wählen den Ordener aus, der Empfohlen wird.
 3. Dann "pip install -r requirements.txt"
 4. Dann mit "Flask run" ausführen, wenn es nicht klappt dann mit "python app.py"
+
 Wenn es nicht klappt, gibt es ein Fehler.
 
 Wir wissen nicht warum machmal "flask run" nicht angenommen wird.
