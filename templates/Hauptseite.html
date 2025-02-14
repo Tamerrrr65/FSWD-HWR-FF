@@ -17,11 +17,16 @@
             </div>
 
             <div class="middle-section"></div>
-
+            
             <div class="right-section">
                 <li>
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
+                        {% for fragebogen in frageboegen %}
+                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                        {% else %}
+                            <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
+                        {% endfor %}
 
                     </ul>
                 </li>

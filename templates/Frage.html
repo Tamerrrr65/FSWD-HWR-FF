@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragebogen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Frage.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <ul>
+            <div class="left-section">
+                <li><button onclick="window.location.href='/'">Home</button></li>
+            </div>
+
+            <div class="middle-section"></div>
+
+            <div class="right-section">
+                <li>
+                    <a href="/Fragebögen">Fragebögen▾</a>
+                    <ul class="dropdown">
+                        {% for fragebogen in frageboegen %}
+                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                        {% else %}
+                            <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+
+                <li><a href="/Empfehlungen">Empfehlungen</a></li>
+                <li><a href="/Nachhaltigkeit">Nachhaltigkeit</a></li>
+
+                <li>
+                    <a href="#">Menü▾</a>
+                    <ul class="dropdown">
+                        {% if Angemeldet %}
+                            <li><a href="/Profil">Profil</a></li>
+                            <li><a href="/Ergebnisse">Ergebnisse des Fragebogens</a></li>
+                            <li><a href="/Abmelden">Abmelden</a></li>
+                        {% else %}
+                            <li><a href="/Anmelden">Anmelden</a></li>
+                            <li><a href="/Registrieren">Registrieren</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </div>
+        </ul>
+
+
+        <main>
+            <h1>{{ frageboegen.title }}</h1>
+            <p>{{ frageboegen.beschreibung }}</p>
+
+            <form action="{{ url_for('submit_fragebogen') }}" method="POST">
+                <input type="hidden" name="fragebogen_id" value="{{ fragebogen.id }}">
+            
+                {% for frage in fragen %}
+                <section class="frage">
+                    <h2>Frage {{ loop.index }}</h2>
+                    <p>{{ frage[1] }}</p>
+            
+                    {% if frage[2] == 'range' %}
+                    <div class="range-container">
+                        <input type="range" name="frage{{ frage[0] }}" min="1" max="5" value="5" id="frage{{ frage[0] }}" required>
+                        <div class="range-labels">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                            <span>4</span>
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <label for="frage{{ frage[0] }}"></label>
+            
+                    {% elif frage[2] == 'radio' %}
+                    <div>
+                        <label>
+                            <input type="radio" name="frage{{ frage[0] }}" value="1" required>
+                            Ja
+                        </label>
+                        <label>
+                            <input type="radio" name="frage{{ frage[0] }}" value="0" required>
+                            Nein
+                        </label>
+                    </div>
+                    {% endif %}
+                </section>
+                {% else %}
+                <p>No questions available.</p>
+                {% endfor %}
+            
+                <div class="submit-container">
+                    <button type="submit" class="button">Auswerten</button>
+                </div>
+            </form>
+            
+        </main>
+
+        <footer>Footer</footer>
+    </div>
+</body>
+</html>

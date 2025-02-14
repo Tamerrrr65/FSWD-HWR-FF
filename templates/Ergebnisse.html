@@ -22,6 +22,11 @@
                 <li>
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
+                        {% for fragebogen in frageboegen %}
+                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                        {% else %}
+                            <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
+                        {% endfor %}
 
                     </ul>
                 </li>
@@ -48,6 +53,38 @@
         
         <main>
             <h1>Ausgefüllten Fragebögen</h1>
+
+            {% if results %}
+                {% for fragebogen_id, data in results.items() %}
+                    <section style="margin-bottom: 20px; padding: 15px; background-color: #f9f9f9; border-radius: 8px;">
+                        <h2>{{ data.titel }}</h2>
+                        
+                        {% for creation_date, fragen in data.grouped_questions.items() %}
+                            <p><strong>Datum:</strong> {{ creation_date }}</p>
+                            <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px;">
+                                <thead>
+                                    <tr style="background-color: #ddd;">
+                                        <th style="padding: 8px; text-align: left;">Fragen</th>
+                                        <th style="padding: 8px; text-align: left;">Antwort</th>
+                                        <th style="padding: 8px; text-align: left;">Auswertung</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for frage in fragen %}
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">{{ frage.frage_text }}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">{{ frage.antwort }}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">{{ frage.auswertungs_text }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    </section>
+                {% endfor %}
+            {% else %}
+                <p>Keine Fragebögen verfügbar</p>
+            {% endif %}
         </main>
         
         <footer>Footer</footer>

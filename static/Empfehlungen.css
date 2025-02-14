@@ -138,7 +138,6 @@ ul .dropdown li a:hover {
     background-color: #e9ecef;
 }
 
-/* Section Styling */
 section {
     margin-top: 50px;
     padding: 30px;
@@ -153,7 +152,6 @@ section:hover {
     transform: translateY(-5px);
 }
 
-/* Buttons */
 .button-container {
     display: flex;
     justify-content: center;
@@ -176,7 +174,6 @@ button:hover {
     transform: translateY(-2px);
 }
 
-/* Links */
 a {
     color: #007bff;
     text-decoration: none;

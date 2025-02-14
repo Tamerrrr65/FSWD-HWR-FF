@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Webseite</title>
+    <title>Profilseite</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='Profil.css') }}">
 </head>
 
@@ -22,6 +22,11 @@
                 <li>
                     <a href="/Fragebögen">Fragebögen▾</a>
                     <ul class="dropdown">
+                        {% for fragebogen in frageboegen %}
+                            <li><a href="{{ url_for('show_fragebogen', fragebogen_id=fragebogen[0]) }}">{{ fragebogen[1] }}</a></li>
+                        {% else %}
+                            <p>Keine Fragebögen verfügbar. Kann sein es gibt ein Problem mit der Datenbank.</p>
+                        {% endfor %}
 
                     </ul>
                 </li>
@@ -44,6 +49,7 @@
                 </li>
             </div>
         </ul>
+
 
         <main>
 
