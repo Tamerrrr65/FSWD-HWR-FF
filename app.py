@@ -94,10 +94,6 @@ def Empfehlungen():
         return render_template('Empfehlungen.html', Angemeldet=True, username=session.get('username'), frageboegen=frageboegen)
     return render_template('Empfehlungen.html', Angemeldet=False, frageboegen=frageboegen)
 
-@app.route('/Gesetze')
-def Gesetze():
-    return render_template('Gesetze.html')
-
 @app.route('/Abmelden')
 def Abmelden():
     session.pop('Angemeldet', None)
